@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>call继承</title>
+		<script src="http://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+	</head>
+
+	<body>
+	    <h1>call继承</h1>
+	<script>
+	    // call实现继承
+	    function Person(name , sex){ // 原先的父类
+	    	this.name = name;
+	    	this.sex = sex;
+	    }
+	    Person.prototype.showName = function(){
+	    	alert('名字：' + this.name);
+	    };
+	    Person.prototype.showSex = function(){
+	    	alert('性别：' + this.sex);
+	    };
+	    var per1 = new Person('heihei' , '男');
+	        per1.showSex(); // 男
+	        per1.showName(); // heihei
+	     
+	   // 子类 Worker     
+	   function Worker(name , sex , job){
+	   	 // 调用父级的构造函数 -> 为了继承父级属性, call可以改变this指向。（构造函数伪装）
+	   	 Person.call(this,name , sex); // Person类具有的，通过call来调用 ***
+	   	 this.job = job;
+	   };
+	   // 原型链 ，通过原型继承父级的方法
+	   Worker.prototype = Person.prototype;// Worker的原型等于 Person的原型     
+	   Worker.prototype.showJob = function(){ // Worker的原形	
+	   	 alert('职位：' + this.job);
+	   };
+	   var worker1 = new Worker('张三','女','服务员');
+	   worker1.showName();
+	   worker1.showSex();
+	   worker1.showJob(); 
+	   
+	</script>    
+	</body>
+</html>
