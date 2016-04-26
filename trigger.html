@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>trigger事件</title>
+		<script src="http://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+		<style type="text/css" media="screen">
+			.foo-div{
+				width: 150px;
+				height: 100px;
+				background: red;
+			}
+			.on-div{
+				width: 150px;
+				height: 100px;
+				background: #ccc;
+				margin-top:20px;
+			}
+		</style>
+	</head>
+
+	<body>
+	    <h1>trigger事件</h1>
+	    <div class="foo-div">
+		  <p>class="foo-div"</p>
+		  <p>点击</p>
+		</div>
+		<div class="on-div">
+		  <p>class="on-div"</p>
+		</div>
+	    
+	<script>
+	     
+	</script>    
+	<script type="text/javascript" charset="utf-8">
+	  $(function(){
+	  	var fooDivObj = $('.foo-div');
+	  	var onDivObj = $('.on-div');
+	  	fooDivObj.on('click' , function(){
+          var testData = {
+            aa : '改变之后的内容',
+            bb : 'abcdef',
+            width : '200px',
+            height : '200px'
+          };
+        // 主动促发事件 trigger  
+        onDivObj.trigger('TEST_TRIGGER_FN' , testData);
+       });
+    
+       // $('.on-div')捕获该事件 TEST_TRIGGER_FN
+       onDivObj.on('TEST_TRIGGER_FN' , function(event , testData){
+         onDivObj.html(testData.aa);
+         onDivObj.css({
+        	'width' : testData.width,
+        	'height' : testData.height
+          });
+         console.log(testData);
+        });
+	  });	
+	</script>	
+	</body>
+</html>
