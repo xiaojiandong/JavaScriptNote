@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>window.name跨域data.html</title>
+		<script src="http://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+		<style>
+		 body{
+			background: #1C94C4
+		  }
+		 .iframe{
+		 	width: 800px;
+		 	height: 500px;
+		 }
+		</style>
+	</head>
+
+	<body>
+		<h1>第1版，页面跳转</h1>
+	    <h1>通过修改window.name来解决跨域问题</h1>
+	    <h2>这里是data.html</h2>
+	<script>
+	  if( window.name ){
+	  	alert(window.name);
+	  }else{
+	  	alert('原本的data.html中是没有window.name的');
+	  }
+	</script>
+ 
+	</body>
+</html>
