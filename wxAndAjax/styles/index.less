@@ -1,0 +1,191 @@
+
+*{
+  font-family: "微软雅黑";
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  img{
+    display: block;
+  }
+}
+
+body {
+  background: #fafafa;
+  color: #333;
+}
+
+
+// 解决IOS原生的输入框出现边框问题
+input[type="button"],
+input[type="submit"],
+input[type="text"],
+input[type="reset"] {
+  -webkit-appearance: none;
+}
+textarea { -webkit-appearance: none;}
+
+// 弹窗类
+.sixe-alert-wrap{
+  -webkit-animation: alertAnimate 0.5s 0.1s backwards;
+}
+@-webkit-keyframes alertAnimate {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+
+// 背景图
+.outer-bg-wrap{
+  width: 640px;
+  min-height: 1182px;
+  padding-top: 130px;
+  background-image: url("../images/dom-perignon-bg.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  box-sizing: border-box;
+  color: #e6d282;
+
+  .logo{
+    margin: 0 auto;
+  }
+
+  .tips{ // 请输入客人的姓名
+    font-size: 32px;
+    margin-top: 130px;
+  }
+}
+
+// 输入客人的姓名,选择性别
+.user-info{
+  width: 390px;
+  height: 85px;
+  //background-color: red;
+  padding-bottom: 10px;
+  padding-top: 40px;
+  margin: 0 auto;
+  border-bottom: 1px dashed #e6d282;
+  font-size: 24px;
+  overflow: hidden;
+  box-sizing: border-box;
+
+  .user-name-inp{ // 用户名字
+    width: 180px;
+    height: 30px;
+    line-height: 30px;
+    border: none;
+    outline:medium;
+    text-align: center;
+    color: #e6d282;
+    font-size: 24px;
+    background-color: transparent;
+    //background-color: pink;
+  }
+
+  .active{ // 高亮性别
+    color: #e6d282;
+  }
+  .sex-male{ // 性别选择
+    width: 140px;
+    height: 30px;
+    line-height: 30px;
+    float: right;
+    color: #999;
+    //background-color: yellow;
+    .sex-common{
+      cursor: pointer;
+    }
+  }
+}
+
+.upload-tips{
+  font-size: 32px;
+  margin-top: 110px;
+  span{
+    font-size: 24px;
+  }
+}
+
+// 上传三张img的容器
+.upload-img-container-wrap{
+  width: 515px;
+  height: 145px;
+  margin: 0 auto;
+  margin-top: 70px;
+  //background-color: rgba(100,20,30,0.3);
+
+  .file-img-wrap{ // 存放上传img的容器 143 * 143
+    float: left;
+    position: relative;
+    width: 143px;
+    height: 143px;
+    overflow: hidden;
+    background-image: url("../images/upload-bg.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    margin-right: 43px;
+    &:last-child{
+      margin-right: 0px;
+    }
+    img{ // 用户可视img的宽度，ajax请求成功后，追加到页面上
+      position: absolute;
+      top:0;
+      left: 0;
+      border: 2px solid transparent;
+      box-sizing: border-box;
+      //width: 143px;
+      //height: 143px;
+    }
+
+    .common-file-inp{
+      opacity: 0;
+      position: absolute;
+      top:0;
+      left: 0;
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+    }
+  }
+
+}
+
+// 生成感谢信btn
+.create-letter-btn {
+  margin: 0 auto;
+  margin-top: 110px;
+  cursor: pointer;
+}
+
+// 请上传照片
+.load-img-wrap{
+  position: relative;
+  width: 200px;
+  height: 200px;
+  background: red;
+  margin: 0 auto;
+  .load-inp{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ccc;
+    opacity: 0;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+

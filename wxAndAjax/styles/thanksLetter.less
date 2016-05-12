@@ -1,0 +1,483 @@
+
+*{
+  font-family: "微软雅黑";
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  img{
+    display: block;
+  }
+}
+
+body {
+  background: #fafafa;
+  color: #333;
+  background-image: url("../images/dom-perignon-bg.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+
+// 解决IOS原生的输入框出现边框问题
+input[type="button"],
+input[type="submit"],
+input[type="text"],
+input[type="reset"] {
+  -webkit-appearance: none;
+}
+textarea { -webkit-appearance: none;}
+
+//.top-logo{
+//  position: fixed;
+//  top:130px;
+//  left: 50%;
+//  margin-left: -120px;
+//  z-index: 20;
+//  //margin: 0 auto;
+//}
+
+// 背景图
+.outer-bg-wrap{
+  position: relative;
+  width: 640px;
+  min-height: 1182px;
+  padding-top: 100px;
+  //background-image: url("../images/dom-perignon-bg.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  color: #e6d282;
+
+  .logo{
+    position: absolute;
+    top:100px;
+    left: 200px;
+    z-index: 20;
+    margin: 0 auto;
+  }
+
+}
+
+// 信封父容器
+.letter-wrap{
+  position: relative;
+  width: 580px;
+  height: 420px;
+  margin: 0 auto;
+  margin-top: 110px;
+  margin-left: 30px;
+  box-sizing: border-box;
+
+  .common-letter{
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+  }
+ // 信件img
+ .letter-img{
+   .common-letter;
+   z-index: 5;
+ }
+  // 信封上面的三角区域
+  .letter-top{
+   position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+  .letter-name-wrap{
+    .common-letter;
+  }
+
+  // 用户亲启 父容器
+  .user-info-wrap{
+    display: none;
+    .common-letter;
+    z-index: 10;
+    font-size: 30px;
+    padding-top: 60px;
+  }
+}
+
+.letter-wrap-animate{ // 大信封下移动画
+  -webkit-animation: letterWrapAnimate 0.6s 0.3s backwards;
+  -webkit-transform: translate3D(0,300px,0);
+}
+@-webkit-keyframes  letterWrapAnimate {
+  0%{
+    -webkit-transform: translate3D(0,0,0);
+  }
+  100%{
+    -webkit-transform: translate3D(0,300px,0);
+  }
+}
+// 信封旋转动画
+.letter-top-animate{
+  -webkit-animation: letterAnimate 1.2s 0.6s backwards;
+  -webkit-transform-origin : 60px 0px; // 旋转中心
+  -webkit-transform: rotateX(-180deg);
+  opacity: 0.4;
+}
+@-webkit-keyframes  letterAnimate {
+ 0%{
+   -webkit-transform: rotateX(0deg);
+   opacity: 1;
+ }
+ 100%{
+   -webkit-transform: rotateX(-180deg);
+   opacity: 0.4;
+ }
+}
+
+// 整个页面的旋转动画
+.outer-bg-wrap-animate{
+  -webkit-animation: outerWrapAnimate 1.2s 0.1s backwards;
+  -webkit-transform-origin : 0px 0px;
+}
+@-webkit-keyframes outerWrapAnimate {
+  0%{
+    -webkit-transform: rotateZ(0deg);
+    opacity: 1;
+  }
+  100%{
+    -webkit-transform: rotateZ(100deg);
+    opacity: 0;
+  }
+}
+
+// 底部信息
+.button-wrap{
+  width: 640px;
+  .tips{
+    font-size: 30px;
+    text-align: center;
+    margin-top: 30px;
+  }
+  .common-btn{
+    margin: 0 auto;
+    cursor: pointer;
+  }
+  .preview-btn{
+    margin-top: 70px;
+    margin-bottom: 10px;
+  }
+}
+
+
+// swiper部分
+.swiper-contanier-wrap-big{
+  position: relative;
+  //margin-top: -130px;
+  //border: 2px solid red;
+  overflow: hidden;
+  width: 640px;
+  color: #e6d282;
+  box-sizing: border-box;
+  //background-image: url(../images/dom-perignon-bg.jpg);
+  //-webkit-animation: swiperContainerAnimate 0.8s 0s backwards;
+  -webkit-transform-origin : 0px 0px;
+ @-webkit-keyframes swiperContainerAnimate {
+   0%{
+     -webkit-transform: rotateZ(-100deg);
+     opacity: 0;
+   }
+   100%{
+     -webkit-transform: rotateZ(0deg);
+     opacity: 1;
+   }
+ }
+
+  // swiper内部的logo
+  .swiper-logo{
+    position: fixed;
+    top:100px;
+    left: 50%;
+    margin-left: -120px;
+    z-index: 20;
+  }
+
+
+}
+
+// 第2个swiper与父容器公共的宽高
+.common-swiper-w-h{
+  width: 555px;
+  height: 400px;
+}
+
+
+.swiper-container-big {
+  width: 100%;
+  height: 100%;
+  .swiper-wrapper{
+    width: 100%;
+    height: 100%;
+    .swiper-slide{
+        width: 100%;
+        height: 100%;
+      }
+    .common-words{
+      position: absolute;
+      left: 44px;
+      width: 555px;
+      box-sizing: border-box;
+    }
+    .slide-page1{ // 第1个页面
+      .page1-words{
+        .common-words;
+        top: 450px;
+
+        .words-animate1{
+          -webkit-animation: wordsAnimate1 0.5s 0.8s backwards;
+        }
+        @-webkit-keyframes wordsAnimate1 {
+           0%{
+             -webkit-transform: translate3D(-200px,0,0);
+             opacity: 0;
+           }
+           100%{
+             -webkit-transform: translate3D(0,0,0);
+             opacity: 1;
+           }
+        }
+        .words-animate2{
+          -webkit-animation: wordsAnimate2 0.5s 0.8s backwards;
+        }
+        @-webkit-keyframes wordsAnimate2 {
+          0%{
+            -webkit-transform: translate3D(200px,0,0);
+            opacity: 0;
+          }
+          100%{
+            -webkit-transform: translate3D(0,0,0);
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    .slide-page2{ // 第2个swiper页面，里面包含一个酒瓶子的背景
+      position: relative;
+      background-image: url("../images/botttle.png");
+      background-repeat: no-repeat;
+      background-position: 365px 20px;
+      .imgs-carousel-wrap{
+        .common-words;
+        top:210px;
+        .common-swiper-w-h;
+        //border: 2px solid #f00;
+        margin: 0 auto;
+      }
+      .page2-words{ // 第2个大swiper下面的文字，即轮播图片下面的文字
+        .common-words;
+        //display: none;
+        //top:780px;
+        height: 190px;
+        bottom: 110px;
+        //background: rgba(20,210,20,0.5);
+
+        // 向下的箭头
+        .arrow-down-2{
+          //position: fixed;
+          //bottom: 100px;
+          //left: 50%;
+          //margin-left: -15px;
+          position:absolute;
+          width: 30px;
+          height: 22px;
+          top: 160px;
+          left: 260px;
+          -webkit-animation: arrowAnimate 2s 0.2s backwards;
+          -webkit-animation-iteration-count : infinite;
+        }
+        @-webkit-keyframes arrowAnimate {
+          0%{
+            -webkit-transform: translate3D(0,0,0);
+          }
+          50%{
+            -webkit-transform: translate3D(0,30px,0);
+          }
+          100%{
+            -webkit-transform: translate3D(0,0,0);
+          }
+        }
+      }
+    }
+
+    .slide-page3{ // 第3个页面，扫描二维码
+      position: relative;
+      .common-code{
+        position: absolute;
+        width: 310px;
+        height: 310px;
+        left: 169px;
+      }
+      .dimensional-code{
+        .common-code;
+        //top: 240px;
+        padding-top: 240px;
+      }
+      .shao-miao-words{
+        .common-code;
+        top: 570px;
+        left: 120px;
+        width: 400px;
+        height: 200px;
+        //background: pink;
+        text-align: center;
+        .small-words{
+          font-size: 30px;
+          margin-bottom: 10px;
+        }
+      }
+      .common-button{
+        display: none;
+        position: absolute;
+        left: 195px;
+      }
+      .send-btn{ // 发送
+        //.common-button;
+        top: 790px;
+      }
+      .make-again-btn{ // 重新制作
+        //.common-button;
+        top: 860px;
+      }
+    }
+  }
+
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 38px;
+  width: 100%;
+  height: 100%;
+  //background: pink;
+  //color:#000;
+  /* Center slide text vertically*/
+  display: -webkit-box;
+  //display: -ms-flexbox;
+  //display: -webkit-flex;
+  //display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  //-webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+
+
+// 第2张大swiper里面的小swiper
+.user-upload-imgs{
+  position: relative;
+  .common-swiper-w-h;
+  //border: 2px solid #f00;
+  margin: 0 auto;
+  overflow: hidden;
+  box-sizing: border-box;
+  .swiper-container-small {
+    .common-swiper-w-h;
+    box-sizing: border-box;
+    .swiper-wrapper-small {
+      color: #000;
+      .common-swiper-w-h;
+      box-sizing: border-box;
+      .swiper-slide-small {
+        .common-swiper-w-h;
+        //border: 2px solid #f00;
+        box-sizing: border-box;
+        text-align: center;
+        font-size: 38px;
+        //background: pink;
+        color: #000 !important;
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        box-sizing: border-box;
+        img{
+          //width: 555px;
+          //height: 400px;
+          max-width: 555px;
+          max-height: 400px;
+          box-sizing: border-box;
+        }
+      }
+    }
+    .swiper-button-next-small{ // 左右箭头
+      position: absolute;
+      left: 497px;
+      top:200px;
+      //background: red;
+      background-image: url("../images/arrow-down.png");
+      background-size: 100% 40%;
+      -webkit-transform: rotate(-90deg);
+    }
+    .swiper-button-prev-small{
+      position: absolute;
+      left: 30px;
+      top:200px;
+      background-image: url("../images/arrow-down.png");
+      background-size: 100% 40%;
+      -webkit-transform: rotate(90deg);
+    }
+  }
+}
+
+
+// 向下的箭头
+.arrow-down{
+  position: fixed;
+  bottom: 120px;
+  left: 50%;
+  margin-left: -15px;
+  -webkit-animation: arrowAnimate 2s 0.2s backwards;
+  -webkit-animation-iteration-count : infinite;
+}
+@-webkit-keyframes arrowAnimate {
+  0%{
+    -webkit-transform: translate3D(0,0px,0);
+  }
+  50%{
+    -webkit-transform: translate3D(0,30px,0);
+  }
+  100%{
+    -webkit-transform: translate3D(0,0,0);
+  }
+}
+
+// 点击发送，生成弹出框
+.send-friends-mask{
+  position: fixed;
+  display: none;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  .send-tips{
+    position: fixed;
+    left: 45%;
+    top: 40px;
+  }
+}

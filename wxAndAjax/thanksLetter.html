@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>vcpPerignon感谢信页面</title>
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link href="http://cdn.bootcss.com/Swiper/3.2.5/css/swiper.min.css" rel="stylesheet">
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="styles/thanksLetter.css">
+    <!-- endbuild -->
+
+  </head>
+  <body>
+
+  <!--<img src="images/logo.png" alt="" class="top-logo" style="display: none">-->
+
+   <!-- logo -->
+   <div class="outer-bg-wrap js_outer_bg_wrap">
+   <!--<div class="outer-bg-wrap outer-bg-wrap-animate">-->
+     <img src="images/logo.png" alt="" class="logo">
+     <!-- 信封 -->
+     <div class="letter-wrap js_letter_wrap">
+       <img src="images/letter1.png" class="letter-img">
+       <div class="letter-name-wrap">
+         <img src="images/letter-top.png" class="js_letter_top letter-top">
+         <div class="user-info-wrap js_user_info_wrap">
+           <span class="js_user_name_sex"></span>&nbsp;&nbsp;<!--亲启-->
+         </div>
+       </div>
+     </div>
+
+     <!-- 底部信息 -->
+     <div class="button-wrap js_button_wrap">
+       <div class="tips">
+         感谢信已生成
+       </div>
+       <!-- 预览 (swiper页面)-->
+       <img src="images/preview-btn.png" class="preview-btn js_preview_btn common-btn">
+       <!-- 发送 (弹出分享层) -->
+       <img src="images/send-btn.png" class="send-btn js_send_btn common-btn">
+     </div>
+
+    </div>
+
+ <!-- 大的swiper页面 -->
+ <div class="swiper-contanier-wrap-big js_swiper_contanier_wrap_big" style="display: none">
+  <img src="images/logo.png" alt="" class="swiper-logo">
+  <div class="swiper-container-big">
+    <div class="swiper-wrapper">
+
+      <!-- 第1个整体的swiper -->
+      <div class="swiper-slide slide-page1 js_swiper_slide_big">
+        <div class="page1-words">
+          <p class="js_words_animate1">臻致的 <span class="js_best_user_name"></span>，</p>
+          <p class="js_words_animate2">诚挚感谢您参加此次晚宴，</p>
+          <p class="js_words_animate1">与唐培里侬一起，</p>
+          <p class="js_words_animate2">执掌岁月，玩味巅峰</p>
+        </div>
+        <img src="./images/arrow-down.png" class="arrow-down js_arrow_down">
+      </div>
+
+      <!-- 第2个整体的swiper -->
+      <div class="swiper-slide slide-page2 js_swiper_slide_big">
+        <div class="imgs-carousel-wrap js_imgs_carousel_wrap">
+          <!--<img src="http://ww1.sinaimg.cn/mw600/b4ece975tw1e33ep5rqfmj.jpg" alt="">-->
+        </div>
+
+        <div class="page2-words js_page2_words">
+          <p class=""><span class="js_best_user_name"></span></p>
+          <div class="">
+            与唐培里侬的<br/>
+            臻致瞬间
+          </div>
+          <img src="./images/arrow-down.png" class="arrow-down-2">
+        </div>
+        <!--<img src="./images/arrow-down.png" class="arrow-down js_arrow_down">-->
+      </div>
+
+      <!-- 第3个整体的swiper -->
+      <div class="swiper-slide slide-page3 js_swiper_slide_big">
+        <img src="./images/dimensional-code.jpg" class="dimensional-code">
+
+        <!--<img src="./images/shao-miao-words.png" class="shao-miao-words">-->
+
+        <div class="shao-miao-words">
+          <div class="small-words">
+            请扫描二维码关注<br>
+            唐培里侬官方微信号<br>
+          </div>
+          唐培里侬期待与您<br>
+          下一次的巅峰碰撞！
+        </div>
+        <img src="images/send-btn.png" alt="" class="send-btn js_send_btn common-button">
+        <img src="images/make-again-btn.png" alt="" class="make-again-btn js_make_again_btn common-button">
+      </div>
+    </div>
+    <!-- Add Pagination -->
+    <!--<div class="swiper-pagination"></div>-->
+   </div>
+  </div>
+
+
+  <!-- 第2个swiper页面的图片轮播 -->
+  <div class="user-upload-imgs js_user_upload_imgs" style="display: none">
+    <div class="swiper-container-small js_swiper_container_small">
+      <div class="swiper-wrapper swiper-wrapper-small">
+
+        <div class="swiper-slide swiper-slide-small">
+          <img class="js_small_img_common js_small_img_0" src="http://ww1.sinaimg.cn/mw600/b4ece975tw1e33ep5rqfmj.jpg">
+        </div>
+        <div class="swiper-slide swiper-slide-small">
+          <img class="js_small_img_common js_small_img_1" src="http://a2.att.hudong.com/33/68/19300534462526137525681526930_950.jpg">
+        </div>
+        <div class="swiper-slide swiper-slide-small js_swiper_slide_small_2">
+          <img class="js_small_img_common js_small_img_2" src="">
+        </div>
+      </div>
+
+      <div class="swiper-button-next swiper-button-next-small"></div>
+      <div class="swiper-button-prev swiper-button-prev-small"></div>
+    </div>
+  </div>
+
+
+  <!--点击发送，生成弹出框-->
+  <div class="send-friends-mask js_send_friends_mask">
+    <img src="./images/send-tips.png" alt="" class="send-tips">
+  </div>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      e.src='https://www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+      ga('create','UA-XXXXX-X');ga('send','pageview');
+    </script>
+
+    <script src="scripts/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/Swiper/3.2.5/js/swiper.min.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="scripts/wx.js"></script>
+    <!-- 工具方法脚本 -->
+    <script src="scripts/SIXE.Util.js"></script>
+    <!-- 生成感谢信脚本 -->
+    <script src="scripts/thanksLetter.js"></script>
+
+  </body>
+</html>

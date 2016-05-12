@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>vcpPerignon</title>
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="styles/index.css">
+    <!-- endbuild -->
+
+  </head>
+  <body>
+
+   <div class="outer-bg-wrap">
+
+   <img src="images/logo.png" alt="" class="logo">
+
+    <div class="tips">请输入客人的姓名</div>
+
+    <div class="user-info">
+      <input type="text" class="user-name-inp js_user_name_inp" placeholder="">
+      <div class="sex-male">
+        <span class="js_sex_btn sex-common active" data-value="0">先生</span>
+        <!--<span>&nbsp;/&nbsp;</span>-->
+        <span>/</span>
+        <span class="js_sex_btn sex-common" data-value="1">女士</span>
+      </div>
+      <!--<span>先生&nbsp;/&nbsp;女士</span>-->
+    </div>
+
+    <div class="upload-tips">
+      请上传照片 <span>(最多三张)</span>
+    </div>
+
+    <!-- 上传3张img的容器 -->
+    <div class="upload-img-container-wrap">
+     <!-- 第1个input -->
+     <div class="file-img-wrap js_file_img_wrap1">
+       <input type="file" capture="camera" accept="image/*" data-fileId="0" class="js_inp_file1 common-file-inp">
+     </div>
+
+     <!-- 第2个input -->
+     <div class="file-img-wrap js_file_img_wrap2">
+       <input type="file" capture="camera" accept="image/*" data-fileId="1" class="js_inp_file2 common-file-inp">
+     </div>
+
+     <!-- 第3个input -->
+     <div class="file-img-wrap js_file_img_wrap3">
+       <input type="file" capture="camera" accept="image/*" data-fileId="2" class="js_inp_file3 common-file-inp">
+     </div>
+    </div>
+
+    <!-- 生成感谢信btn -->
+    <img src="images/create-letter-btn.png" class="create-letter-btn js_create_letter_btn">
+
+   </div>
+
+
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID.
+    <script>
+      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      e.src='https://www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+      ga('create','UA-XXXXX-X');ga('send','pageview');
+    </script>
+    -->
+
+    <script src="scripts/jquery.min.js"></script>
+    <!-- 工具方法脚本 -->
+    <script src="scripts/SIXE.Util.js"></script>
+    <!-- 上传图片的库 -->
+    <script src="scripts/lrz.bundle.js"></script>
+    <!-- 入口脚本 -->
+    <script src="scripts/main.js"></script>
+
+  </body>
+</html>
