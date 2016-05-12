@@ -2,12 +2,6 @@
  * Created by Lihu on 2016/5/6.
  */
 
-
-/**
- * Created by Lihu on 2016/5/6.
- */
-
-
 /**
  * 微信分享：
  * 在body里面先导入：
@@ -92,17 +86,15 @@ function wxConnect(data, func) {
 //wxConnect(shareData); // 只需在外部调用这两个方法
 //wxReady(shareData);
 
-
-
-     /*
-    
-     */
+ 
     /*
      * html事例：
      *   第1个input 
      *   <div class="file-img-wrap js_file_img_wrap1">
      *     <input type="file" capture="camera" accept="image/*" data-fileId="0" class="js_inp_file1 common-file-inp">
      *   </div>
+     *   先导入上传img的库 lrz.bundle.js
+     *   <script src="scripts/lrz.bundle.js"></script>
      * js调用：
      *  // 第1个输入框
      *   var jsInpFile1Obj = $('.js_inp_file1'); // 获取input框
