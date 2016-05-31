@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>上传img</title>
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="stylesheet" href="styles/index.css">
+  </head>
+  <body>
+
+   <img src="images/logo.png" alt="" class="top-logo11">
+   <div class="outer-bg-wrap">
+
+    <div class="tips">请输入客人的姓名</div>
+
+    <div class="user-info">
+      <input type="text" class="user-name-inp js_user_name_inp" placeholder="">
+      <div class="sex-male">
+        <span class="js_sex_btn sex-common active" data-value="0">先生</span>
+        <span>/</span>
+        <span class="js_sex_btn sex-common" data-value="1">女士</span>
+      </div>
+    </div>
+
+    <div class="upload-tips">
+      请上传照片 <span>(最多三张)</span>
+    </div>
+
+    <!-- 上传3张img的容器 -->
+    <div class="upload-img-container-wrap">
+     <!-- 第1个input -->
+     <div class="file-img-wrap js_file_img_wrap1">
+       <!--<div class="cancle-upload-img-btn js_cancle_upload_img_btn"></div>-->
+       <input type="file" capture="camera" accept="image/*" data-fileId="0" class="js_inp_file1 common-file-inp">
+     </div>
+
+     <!-- 第2个input -->
+     <div class="file-img-wrap js_file_img_wrap2">
+       <input type="file" capture="camera" accept="image/*" data-fileId="1" class="js_inp_file2 common-file-inp">
+     </div>
+
+     <!-- 第3个input -->
+     <div class="file-img-wrap js_file_img_wrap3">
+       <input type="file" capture="camera" accept="image/*" data-fileId="2" class="js_inp_file3 common-file-inp">
+     </div>
+    </div>
+
+    <!-- 生成感谢信btn -->
+    <img src="images/create-letter-btn.png" class="create-letter-btn js_create_letter_btn">
+   </div>
+
+   <!-- require.js和脚本配置文件 -->
+   <script src="scripts/require.js"></script>
+   <script src="scripts/require_config.js"></script>
+   <!-- 入口主脚本 -->
+   <script src="scripts/index.js"></script>
+  </body>
+</html>

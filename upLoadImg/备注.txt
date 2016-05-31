@@ -1,0 +1,6 @@
+
+备注：
+1. 使用require.js 将第3方库放入公共的配置脚本 require_config.js 中
+2. 上传img的插件 lrz.bundle.js，lrz.all.bundle.js，1.chunk.js，2.chunk.js，
+    为了Android和IOS兼容，4个脚本都要引入
+3. 公共的工具方法在ProjectCommonUtil.js中

@@ -1,0 +1,167 @@
+* {
+  font-family: "微软雅黑";
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+* img {
+  display: block;
+}
+body {
+  background: #fafafa;
+  color: #333;
+}
+input[type="button"],
+input[type="submit"],
+input[type="text"],
+input[type="reset"] {
+  -webkit-appearance: none;
+}
+textarea {
+  -webkit-appearance: none;
+}
+.sixe-alert-wrap {
+  -webkit-animation: alertAnimate 0.5s 0.1s backwards;
+}
+@-webkit-keyframes alertAnimate {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.top-logo11 {
+  position: fixed;
+  top: 65px;
+  left: 50%;
+  margin-left: -120px;
+  z-index: 20;
+}
+.outer-bg-wrap {
+  width: 640px;
+  padding-top: 130px;
+  background-image: url("../images/dom-perignon-bg.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  box-sizing: border-box;
+  color: #e6d282;
+}
+.outer-bg-wrap .logo {
+  margin: 0 auto;
+}
+.outer-bg-wrap .tips {
+  font-size: 32px;
+  margin-top: 40px;
+}
+.user-info {
+  width: 390px;
+  height: 85px;
+  padding-bottom: 10px;
+  padding-top: 40px;
+  margin: 0 auto;
+  border-bottom: 1px dashed #e6d282;
+  font-size: 24px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.user-info .user-name-inp {
+  width: 180px;
+  height: 30px;
+  line-height: 30px;
+  border: none;
+  outline: medium;
+  text-align: center;
+  color: #e6d282;
+  font-size: 24px;
+  background-color: transparent;
+}
+.user-info .active {
+  color: #e6d282;
+}
+.user-info .sex-male {
+  width: 140px;
+  height: 30px;
+  line-height: 30px;
+  float: right;
+  color: #999;
+}
+.user-info .sex-male .sex-common {
+  cursor: pointer;
+}
+.upload-tips {
+  font-size: 32px;
+  margin-top: 50px;
+}
+.upload-tips span {
+  font-size: 24px;
+}
+.upload-img-container-wrap {
+  width: 515px;
+  height: 145px;
+  margin: 0 auto;
+  margin-top: 70px;
+}
+.upload-img-container-wrap .file-img-wrap {
+  float: left;
+  position: relative;
+  width: 143px;
+  height: 143px;
+  background-image: url("../images/upload-bg.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  margin-right: 43px;
+}
+.upload-img-container-wrap .file-img-wrap:last-child {
+  margin-right: 0px;
+}
+.upload-img-container-wrap .file-img-wrap .cancle-upload-img-btn {
+  position: absolute;
+  z-index: 10;
+  top: -15px;
+  right: -15px;
+  width: 35px;
+  height: 35px;
+  background-image: url("../images/cancle-btn.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.upload-img-container-wrap .file-img-wrap img {
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  border: 2px solid transparent;
+  box-sizing: border-box;
+}
+.upload-img-container-wrap .file-img-wrap .common-file-inp {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+.create-letter-btn {
+  margin: 0 auto;
+  margin-top: 80px;
+  cursor: pointer;
+}
+.load-img-wrap {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  background: red;
+  margin: 0 auto;
+}
+.load-img-wrap .load-inp {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #ccc;
+  opacity: 0;
+}
