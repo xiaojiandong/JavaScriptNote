@@ -69,3 +69,20 @@ require(['jquery','projectCommonUtil','lrzBundle','lrzAllBundle','chunk1','chunk
   <!-- 入口主脚本 -->
   <script src="scripts/index.js"></script>
 ```
+### callback()回调函数的使用
+```js
+        // 时用场景：倒计时结束后，在回调函数中处理结束后的视图逻辑
+        function mainFn(name, callbackName ){
+          alert('这里是初始化main方法的逻辑 : ' + name);
+           setTimeout(function(){ // 倒计时结束后，执行回调函数
+             callbackName('你好'); // 写法1
+            // callbackName.call(this,'你好'); // 写法2
+            // callbackName.apply(this); // 写法3
+            } , 2500);
+        };
+        function callbackName( name ){
+          console.log('这里是callbackName回调方法的逻辑 : " + name);
+        };
+        // 执行mainFn方法
+        mainFn('张三' , callbackName ); // 注意，里面callbackName不要加()
+```
