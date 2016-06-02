@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>事件冒泡/捕获/委托</title>
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <style>
+      *{font-family:"微软雅黑";}
+      .language{
+        padding: 20px;
+        background: rgba(100,100,100,0.6);
+      }
+    </style>
+  </head>
+  <body>
+
+  <h2>1. 事件捕获 : <br/>从事件最上级节点开始往下查找，直到捕获到事件目标</h2>
+  <div class="test js_outer_to_inner js_foo1" style="width: 400px;height: 200px;background: red">
+     <h2>.js_foo1</h2>
+     <div class="js_son1" style="width: 400px;height: 100px;background: greenyellow">.js_son1</div>
+  </div>
+
+  <h2>2. 事件冒泡 : <br/>从事件目标(target)开始，往上冒泡到页面最上一级节点</h2>
+  <div class="test js_inner_to_outer js_foo2" style="width: 400px;height: 200px;background: pink">
+    <h2>.js_foo2</h2>
+    <div class="js_son2" style="width: 400px;height: 100px;background: green">.js_son2</div>
+  </div>
+
+  <h2>3. 事件委托(delegate) : <br/>事件是加到某个元素上的，却加到别的节点上，完成这个事件。
+        <br/>利用了事件冒泡的原理，把事件加到父级上，触发执行效果。好处是提高性能</h2>
+  <p>demo:点击每个li，改变其颜色</p>
+  <ul class="language js_language">
+    <li>1. Java</li>
+    <li>2. JavaScript</li>
+    <li>3. PHP</li>
+    <li>4. Ruby</li>
+  </ul>
+
+  <h2>4. DOM事件处理流程：<br/> 1)事件捕获阶段(useCapture=true)，2)事件目标阶段，3)事件冒泡阶段(useCapture=false)</h2>
+
+  <h2>5. 判断数据的类型 typeof(变量名)</h2>
+  <p>5.1 String，Number，Boolean，Array，Object，Null，Undefined，Date，Function</p>
+
+  <script src="http://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+    <script>
+      $(function(){
+         // 1. 事件捕获
+        $('.js_foo1').on('click' , function(){
+            alert('点击了加到.js_foo1节点的事件，捕获');
+        });
+
+        // 2. 事件冒泡
+        $('.js_son2').on('click' , function(e){
+          var e = e || window.event; //  W3C || IE,获取事件
+          var target = e.target; // 获取事件目标
+          alert('点击了.js_son2节点，目标事件源');
+          // 取消冒泡
+          if(e.stopPropagation ){
+            e.stopPropagation();  // W3C
+          }else{
+            e.cancelBubble = true; // IE
+          }
+          console.log('.js_son2添加了e.stopPopagation()，阻止冒泡');
+          //e.preventDefualt(); // 可以单独阻止默认事件
+          //return false; // 既阻止了冒泡，也阻止了事件本身
+        });
+
+        $('.js_foo2').on('click' , function(){
+          alert('点击了.js_foo2节点外层父节点');
+        });
+
+        // el.addEventListener('click',function(){},useCapture) // useCapture=true 捕获 ；useCapture=false 冒泡
+        // el.attachEvent('onclick',function(){},useCapture) // useCapture=true 捕获 ；useCapture=false 冒泡
+
+        // 3. 事件委托
+        $('.js_language').on('click',function(e){
+           var e = e || window.event; // 事件
+           var target = e.target || e.srcElement; // 事件目标节点(js的写法)
+           var oTarget = $(e.currentTarget);
+           if( target.tagName.toLowerCase() == "li" ){
+             target.style.background = "red";
+//             target.css({
+//                 'background' : "red"
+//             })
+           }
+          console.log('click的标签是： ' + target.tagName);
+        });
+
+        // 4. js判断数据类型
+        var str = "我是字符串String";
+        var number = 123;
+        var boolean = false;
+        var fn = function(){};
+        var obj = {};
+        var date = new Date();
+        var arr = [];
+        console.log( "数据类型是 ： " + typeof(arr) );
+        console.log( "arr 数据类型是Array吗 ： " + (arr instanceof Array) ); //
+
+      });
+    </script>
+  </body>
+</html>
