@@ -97,7 +97,8 @@
         var date = new Date();
         var arr = [];
         console.log( "数据类型是 ： " + typeof(arr) );
-        console.log( "arr 数据类型是Array吗 ： " + (arr instanceof Array) ); //
+        console.log( "arr 数据类型是Array吗 ： " + (arr instanceof Array) ); // true : js检测数组的方法
+        console.log('isArray(arr)方法检测是否为数组：' + $.isArray(arr)); // true : jquery检测数组的方法
 
       });
     </script>
