@@ -1,0 +1,4 @@
+
+// 关于propotype原型的实现
+// 网址:
+http://www.cnblogs.com/xiaouisme/archive/2012/09/17/2688298.html
