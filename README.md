@@ -92,3 +92,40 @@ require(['jquery','projectCommonUtil','lrzBundle','lrzAllBundle','chunk1','chunk
 ### CSS3-3D立方体
 ![image](https://github.com/xiaojiandong/JavaScriptNote/blob/master/upLoadImg/images/css3-3d.png)
 
+### apply(this,argument)方法的使用(局部)：
+```js
+  // call和apply作用一样：call是调用一个对象的一个方法，能够继承另外一个对象的属性和方法
+  // apply示范代码如下：
+  function Person(name,age){ // 定义Person类
+    this.name = name; // 构造
+    this.age = age;
+    this.sayHello = function(){
+       console.log('2.1 我是Person类的sayHello方法');  
+    };
+  };
+  function Print(){ // 定义类Print，显示类的属性
+    this.functionName = '2.2 我是Print类的functionName属性';
+    this.printShow = function(){
+      var msg = [];
+      for(var key in this){ // this -> Print这个类
+         if((typeof this[key]) != 'function'){ // 只打印属性，不打印方法
+            msg.push([key,':',this[key]].join(""));
+         }
+      };
+      console.log('2.3 Print类的方法打印key和value值 -> ' + msg.join(" || "));
+    };
+  };
+  function Student(name,age,grade,school){ // 定义学生类
+    Person.call(this,arguments); // ** 通过call，直接继承了Person类
+    Print.call(this,arguments); // ** 通过call，继承了Print类
+    this.grade = grade; // 构造
+    this.school = school;
+  };
+  var per1 = new Person('jack',31); // Person类的实例 : per1
+  per1.sayHello();
+  var stud1 = new Student('tom',12,5,'华师附小'); // Student类的实例 : stud1
+  stud1.printShow(); // 调用了Print类的printShow方法
+  stud1.sayHello(); // 调用了Person类的sayHello方法
+```
+
+
