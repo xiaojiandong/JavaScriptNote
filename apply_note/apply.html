@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>apply和call</title>
+<meta name="Keywords" content="">
+<meta name="Description" content="">
+<meta name="author" content="@my_programmer">
+<style type="text/css">
+</style>
+</head>
+<body>
+  <h1>1. apply(this,arguments)方法的调用，arguments是数组</h1>
+  <h1>2. call(this,arg1,arg2,arg3)方法的调用</h1>
+  <h1>3. join()方法的使用</h1>
+  <h1>4. 点击body有惊喜</h1>
+   
+
+<script type="text/javascript">
+  // apply和call的作用一样：call是调用一个对象的一个方法，能够继承另外一个对象的属性和方法
+  function appFn(){
+    console.log('1. appFn()方法通过apply调用自己');
+  };
+  appFn(); // 输出 ： 1. appFn()...
+  appFn.apply(this); // 输出 ： 1. appFn()...
+
+  console.log('========================');
+
+  // apply示范代码如下：
+  function Person(name,age){ // 定义Person类
+    this.name = name; // 构造
+    this.age = age;
+    this.sayHello = function(){
+       console.log('2.1 我是Person类的sayHello方法');  
+    };
+  };
+  function Print(){ // 定义类Print，显示类的属性
+    this.functionName = '2.2 我是Print类的functionName属性';
+    this.printShow = function(){
+      var msg = [];
+      for(var key in this){ // this -> Print这个类
+         if((typeof this[key]) != 'function'){ // 只打印属性，不打印方法
+            msg.push([key,':',this[key]].join(""));
+            /**
+             * join方法的使用：
+             * var arr = [1,2,3];
+             * arr.join('&');
+             * var newArr = arr.join(' # ');
+             * console.log(arr); // Array-> [1,2,3]
+             * console.log(newArr); // String-> 1 # 2 # 3
+             */
+         }
+      };
+      console.log('2.3 Print类的方法打印key和value值 -> ' + msg.join(" || "));
+    };
+  };
+  function Student(name,age,grade,school){ // 定义学生类
+    Person.call(this,arguments); // ** 通过call，直接继承了Person类
+    Print.call(this,arguments); // ** 通过call，继承了Print类
+    this.grade = grade; // 构造
+    this.school = school;
+  };
+  var per1 = new Person('jack',31); // Person类的实例 : per1
+  per1.sayHello();
+  var stud1 = new Student('tom',12,5,'华师附小'); // Student类的实例 : stud1
+  stud1.printShow(); // 调用了Print类的printShow方法
+  stud1.sayHello(); // 调用了Person类的sayHello方法
+
+  console.log('========================');
+
+  // join()方法的使用
+  var arr = [1,2,3];
+  arr.join('&');
+  var newArr = arr.join(' # ');
+  console.log('3.1 原本的arr : 是数组吗 ? ' + (arr instanceof Array));
+  console.log(arr); // Array-> [1,2,3]
+  console.log('3.2 使用join方法后，新的newArr : 是字符串吗？' + (typeof newArr));
+  console.log(newArr); // String-> 1 # 2 # 3
+
+  console.log('========================');
+
+  // 自测apply方法的使用
+  function myApply(){
+    setTimeout(function(){
+       console.log('4.1 myApply类的自我调用call()');
+    },2000);
+  };
+  var bodyObj = document.getElementsByTagName('body')[0];
+  bodyObj.addEventListener('click' , function(){
+     alert('4.2 刚才点击了body，2s后调用myApply类的call方法');
+     // this.style.backgroundColor = 'red';
+     setTimeout(function(){
+        myApply.apply(this); // this -> myApply这个类
+     },1500);
+  });
+  // myApply.apply(this);
+
+</script>
+</body>
+</html>
