@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>根据百分比响应式设计rem</title>
+     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta content="telephone=no" name="format-detection" />
+    <link rel="stylesheet" href="base.css" />
+    <style type="text/css">
+      .d1{
+      	/*display:table-cell;
+      	vertical-align:middle;*/
+      	width: 10rem;
+      	height: 2.5rem;
+      	font-size: 0.8rem;
+      	background: pink;
+      }
+      .img1{
+        width: 70%;
+        height: 4rem;
+      }
+    </style>
+</head>
+<body>
+<div class="d1">
+   百分比响应式设计rem
+</div>
+<div class="img1">
+  <img width="100%" src="http://pic1.nipic.com/2008-12-09/200812910493588_2.jpg" alt="">
+</div>
+
+<script src="http://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+<script type="text/javascript">
+  /*
+ // 另外一种响应式设计viewport(就不需要引入头部的base.css)
+     var jsVer=29;
+     var useScaledViewportMeta=function(){
+             var e=parseInt(window.screen.width),t=e/640;$('head').append('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi,minimum-scale='+t+",maximum-scale="+t+'">');
+       };
+       var ua=navigator.userAgent;
+            if(/Android (\d+\.\d+)/.test(ua)){
+                var version=parseFloat(RegExp.$1);version>2.3?useScaledViewportMeta():$('head').append('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">')
+            }else{
+                useScaledViewportMeta();
+       }
+  */     
+</script>  
+</body>
+</html>
