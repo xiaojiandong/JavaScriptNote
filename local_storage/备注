@@ -1,0 +1,13 @@
+
+
+// H5 本地存储 window.localStorage
+// http://www.cnblogs.com/xiaowei0705/archive/2011/04/19/2021372.html
+
+ // 存储
+    var d = localStorage.setItem('myKeyName' , JSON.stringify(myData));
+
+ // 获取
+    JSON.parse(localStorage.getItem('myKeyName'));
+
+  // 清除
+    localStorage.clear();
