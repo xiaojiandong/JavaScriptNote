@@ -103,6 +103,7 @@
        });
 
        //localStorage.removeItem("goodsStatus");//清除本地缓存goodsStatus的值
+       //window.applicationCache.update(); //更新本地存储(然而暂时没用到)
        var p = localStorage.getItem('dataPer');
        p = JSON.parse(p);
        console.log('存储的对象是：');
