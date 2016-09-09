@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Vue.js tree-view demo</title>
+    <style>
+      body {
+        font-family: Menlo, Consolas, monospace;
+        color: #444;
+      }
+      .item {
+        cursor: pointer;
+      }
+      .bold {
+        font-weight: bold;
+      }
+      ul {
+        padding-left: 1em;
+        line-height: 1.5em;
+        list-style-type: dot;
+      }
+    </style>
+    <script src="../static/js/libs/vue.1.0.24.min.js"></script>
+  </head>
+  <body>
+
+    <!-- item template -->
+    <script type="text/x-template" id="item-template">
+      <li>
+        <div
+          style="background: pink"
+          :class="{bold: isFolder}"
+          @click="toggle"
+          @dblclick="changeType">
+          model名字：{{model.name}}
+          <span v-if="isFolder" style="background: #1b6d85">
+            [{{open ? '减-' : '加+'}}]
+          </span>
+        </div>
+        <ol v-show="open" v-if="isFolder">
+          <item-li
+            class="item"
+            v-for="model in model.children"
+            :model="model">
+          </item-li>
+          <li style="background: green"
+             @click="addChild">
+            addChild+++ （{{$index}}）
+          </li>
+        </ol>
+      </li>
+    </script>
+
+    <p>(You can double click on an item to turn it into a folder.)</p>
+    <p>这是一颗树</p>
+    <!-- the demo root element -->
+    <ul id="demo">
+      <item-li
+        style="background: red;border: 3px solid #000"
+        class="item"
+        :model="treeData">
+      </item-li>
+    </ul>
+
+    <!-- demo code -->
+    <script src="tree.js"></script>
+  </body>
+</html>

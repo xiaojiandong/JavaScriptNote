@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>首页</title>
+		<meta name="description" content="">
+		<meta name="author" content="xiaojian">
+		<meta name="viewport" content="width=device-width; initial-scale=1.0">
+		<style type="text/css" media="screen">
+		    *{margin:0;padding:0;}
+			.class-a{
+				background: red;
+			}
+			.class-b{
+				background: green;
+			}
+		</style>
+	</head>
+
+	<body>
+	 <h1>vue + require test </h1>
+	 <h1>中文测试</h1>
+     <scetion id="app">
+	  <div>
+		<h2>1. 双向数据绑定</h2>
+		<p>名字：{{msg}}</p>
+		<input type="text" v-model="msg" debounce="800" />
+	  </div>
+      <div>
+		<h2>2. v-for刷数据</h2>
+		<ul>
+		 <li v-for="todo in todos">
+			   {{$index}}. 框架：{{ todo.iframe }}-
+			   公司: {{ todo.company }}
+		 </li>
+		</ul>
+	  </div>
+      <div>
+        <h2>3. v-click:事件</h2>
+		<p>{{message}}</p>
+		<button v-on:click="reverseMessage">点击</button>
+	  </div>
+	  <div>
+		<h2>4. 综合todo</h2>
+		<input type="text"
+			   placeholder="加点什么按Enter键"
+			   v-model="newTodo"
+			   v-on:keyup.enter="addTodo"/>
+		<ul>
+		  <li v-for="todo in todo1s">
+			<span>{{$index}}. {{todo.text}}</span>
+			<!--<button v-on:click="removeTodo($index)">X</button>-->
+			<button @click="removeTodo($index)">X</button>
+		  </li>
+		</ul>
+	  </div>
+	  <div>
+		<h2>5. v-if 判断语句</h2>
+        <h2 v-if="hasSport">体育新闻</h2>
+		<h2 v-else>时事播报</h2>
+		<button v-on:click="toggleClick">
+		 <span v-if="!hasSport">体育新闻</span>
+		 <span v-else>时事播报</span>
+	     <span>(切换)</span>
+		</button>
+	  </div>
+      <div>
+		<h2>6. v-bind:class='{}'</h2>
+        <div class="static-class"
+			 v-bind:class="{'class-a':isAclass,'class-b':isBclass}">
+		  v-bind:class="{'class-a':isAclass,'class-b':isBclass}"，类的绑定
+		</div>
+	  </div>
+	  <div>
+		<h2>7. 复选框checkbox，单选框radio </h2>
+		<p>7.1 多个勾选框绑定到同一数组</p>
+		<input type="checkbox" id="jack" value="Jack" v-model="checkedNames"/>
+		<span for="jack">勾选Jack</span>
+		<input type="checkbox" id="john" value="John" v-model="checkedNames"/>
+		<span for="john">勾选John</span>
+		<input type="checkbox" id="mike" value="Mike" v-model="checkedNames"/>
+		<span for="mike">勾选Mike</span>
+        <p>选中的名字：{{checkedNames | json}}</p>
+		<p>7.2 radio单选框</p>
+		<input type="radio" id="man" value="Man" v-model="picked"/>
+		<span for="man">男性</span>
+		<input type="radio" id="femal" value="Femal" v-model="picked"/>
+	    <span for="femal">女性</span>
+		<p>选中的性别picked：{{picked}}</p>
+		<p>7.3 select下拉框</p>
+        <select v-model="selected" v-on:change="changeSelect(selected)">
+		  <option selected>China</option>
+		  <option>Japan</option>
+		  <option>USA</option>
+		</select>
+		<p>选中的selected：{{selected}}</p>
+	  </div>
+	  <div>
+		<h2>8. 组件 component</h2>
+	  </div>
+      <div id="demo" >
+		<h2>9. 指令directive</h2>
+		<p>9.1 指令demov</p>
+        <div v-demov:hello.a.b="msg1"></div>
+		<p>9.2 指令demov1</p>
+        <div v-demov1="{color:'red',text:'hello'}"></div>
+		<div v-example a="hello vue directive"></div>
+	   </div>
+	   <div>
+		<h2>10. filter过滤器</h2>
+        <p v-text="msg | reverse"></p>
+		<p v-text="msg | wrap '#' '*'"></p>
+	    <!--<input type="text" v-model="mon | currencyDisplay"/>-->
+		<p v-text="mon | currencyDisplay"></p>
+        <p>10.1 动态参数</p>
+		<input v-model="userInput.wrap" />
+		<!--<span>{{msg | concat userInput}}</span>-->
+	    <p>测试checkbox</p>
+		   <!--<input type="checkbox" v-model="allText"/>-->
+		   <input type="text" v-model="allText"/>
+		   <span>单选框</span>
+	    </div>
+	 </scetion>
+
+	 <h1><input id="j_phone" placeholder="请输入电话好嘛" /></h1>
+	 <h1><input id="j_code" placeholder="请输入验证码" /></h1>
+	 <div id="j_get_code" style="background: #ffcf40;
+	 width: 250px;height: 80px;margin: 0 auto;font-size: 30px">
+		 点击获取验证码
+	 </div>
+	 <h1><div id="j_submit_btn">提交登陆</div></h1>
+
+
+
+	 <!--<script src="static/js/libs/config_static.js"></script>-->
+	 <script>
+//      alert(BaseConfig.a);
+	 </script>
+	  <!--<script src='static/js/libs/vue.1.0.24.min.js'></script>-->
+	 <!--<script src='static/js/modules/index.js'></script>-->
+	 <!--<script data-main='static/js/modules/index.js' src="static/js/libs/require.2.1.15.min.js"></script>-->
+
+	 <script src="../static/js/libs/require.2.1.15.min.js"></script>
+	 <script src='../static/js/libs/config.js'></script>
+     <script src="../static/js/modules/index.js"></script>
+
+	 <script>
+
+	 </script>
+
+	</body>
+</html>

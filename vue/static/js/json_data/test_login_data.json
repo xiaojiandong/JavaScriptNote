@@ -1,0 +1,13 @@
+{
+  "name": "application-name",
+  "version": "0.0.1",
+  "hasLogined" : false,
+  "data" : {
+    "name" : "张三",
+    "age" : "20",
+    "status" : 0,
+    "lottoery" : 1,
+    "game_available_time" : 3,
+    "msgResponse" : "系统繁忙，请稍后重试..."
+  }
+}

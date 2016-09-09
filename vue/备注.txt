@@ -1,0 +1,29 @@
+
+在webstorm打开：
+
+登陆页路径：
+F:\Demo\vue\pages\login.html
+工具类路径：
+F:\Demo\vue\static\js\libs\common\SUBJ.Util.js
+手机号码登录组件路径：
+F:\Demo\vue\static\js\libs\common\LoginUtil.js
+引入LoginUtil模块，
+ // 登陆小组件
+        var loginUtil = new LoginUtil({
+            phone_id : 'j_phone',//手机号输入框
+            input_code_id : 'j_code',//验证码输入框
+            get_code_id : 'j_get_code',//获取验证码
+            submit_id : 'j_submit_btn',//提交
+            successCallBack : function(res){ //登陆成功后的回调
+              //console.info('登陆成功的逻辑');
+                console.log('OTP请求成功');
+                $('.js_mask_wrap').hide();
+                setTimeout(function(){
+                    getRotateData(res.data);
+                },600);
+                // todo 将用户手机号保存到本地存储
+            },
+            failCallBack : function(err){//登陆失败后的回调
+                alert('登陆失败，请输入正确格式的手机号码和验证码');
+            }
+        });
