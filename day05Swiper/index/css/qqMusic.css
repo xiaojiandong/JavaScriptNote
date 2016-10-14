@@ -1,0 +1,383 @@
+
+ *{
+    	padding: 0;
+    	margin: 0;
+    	list-style: none;
+    	text-decoration: none;
+    }
+    a , a:hover , a:visited , a:link{
+    	color: #000;
+    }
+    body {
+        background: #fff;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        color:#000;
+        margin: 0;
+        padding: 0;
+        font-family: "微软雅黑";
+        letter-spacing: 2px;
+    }
+    /* 左边部分 */
+    #left{
+    	float: left;
+    	width:12%;
+    	height:100%;
+    	box-sizing: border-box;
+    	/*border:2px solid red;*/
+    	color:#fff;
+    	background: rgb(50,50,50);
+    }
+    #left figure{
+    	width:90%;
+    	padding-top: 20px;
+    }
+    #left div{
+    	width:80%;
+    	margin-left:10px;
+    	margin-top:50px;
+    	border-radius: 20%;
+    	height:90px;
+    	color:#000;
+    	font-size:18px;
+    	line-height:90px;
+    	text-align:center;
+    	/*border:2px solid red;*/
+    	background: rgb(210,230,230);
+    }
+    /* 右边部分 */
+    #right{
+    	float: right;
+    	width:88%;
+    	height:100%;
+    	/*border:2px solid #ccc;*/
+    	box-sizing: border-box;
+    	padding-left:20px;
+    	padding-right:20px;
+    	font-size: 18px;
+    	
+    	/*background-color: #eee;*/
+    }
+    #right nav{
+    	text-align: center;
+    	width:105%;
+    	box-sizing: border-box;
+    	border-bottom: 1px solid #ccc;
+    	margin-left: -22px;
+    }
+    #right nav ul{
+    	box-sizing: border-box;
+    }	
+    /*标头导航*/
+   nav ul li{
+   	display: inline-block;
+   	padding: 10px;
+   	padding-left:10px;
+   	padding-right:10px;
+    box-sizing: border-box;
+   }
+    .on{
+    border-bottom:2px solid green;
+    color: red;	
+    }
+    /* 滚动海报 */
+    .swiper-container {
+        width: 100%;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        /*border: 2px solid #000;*/
+    }
+    /* 每个子海报大小 */
+    .swiper-slide {
+        background-position: center;
+        background-size: cover;
+        width: 650px;
+        height: 200px;
+    }
+    /* p ： QQ音乐巅峰榜 */
+   p{
+   	border-left: 3px solid green;
+   	padding-left: 10px;
+   	margin-top: 10px;
+   	margin-bottom: 10px;
+   } 
+   #section1{
+   	width: 100%;
+   	height:120px;
+   	/*border: 1px solid red;*/
+   }
+   #section1 figure{
+    float: left;
+    width:47.5%;
+    /*background: #eee;*/
+    background:rgb(210,230,230);
+    margin-right: 40px;
+    box-shadow: 0 0 7px rgb(50,50,50);
+   }
+   #section1 figure img{
+    float: left;
+   }
+   #section1 figure figcaption{
+    float: left;
+    padding-top:18px;
+    margin-left: 30px;
+   }
+   #section1 figure figcaption label{
+   	 display: block;
+   }
+   /* 热门歌单 */
+  #section2{
+  	width: 100%;
+  	/*height: 200px;*/
+  	overflow:hidden;
+  	/*border: 1px solid red;*/
+  }
+  section figure{
+  	float:left;
+    width:23%;
+    height:100%;
+    margin-right:22px;
+  }
+   
+   #mymusic{
+   	 animation: move1 1s 0.5s backwards;
+   	 -webkit-animation: move1 1s 0.5s backwards;
+   	 animation-iteration-count: infinite;
+   	 -webkit-animation-iteration-count: infinite;
+   }
+   @-webkit-keyframes move1{
+   	0%{
+		transform:rotate(0deg) translateY(0px);
+	}
+	25%{
+		transform:rotate(-15deg) translateY(0px);
+	}
+	50%{
+		transform:rotate(15deg) translateY(0px);
+	}
+	75%{
+		transform:rotate(-15deg) translateY(0px);
+	}
+	100%{
+		transform:rotate(0deg) translateY(0px);
+	}
+   }
+   #music{
+   	 animation: move2 1.8s 0.5s backwards;
+   	 -webkit-animation: move2 1.8s 0.5s backwards;
+   	 animation-iteration-count: infinite;
+   	 -webkit-animation-iteration-count: infinite;
+   }
+   @-webkit-keyframes move2{
+   	0%{
+		/*transform:rotate(0deg) translateY(0px);*/
+		opacity:0;
+		transform:scale(0);
+	}
+	100%{
+		opacity:1;
+		transform:scale(1);
+	}
+   }
+   #mv h3{
+   	animation: move3 1.5s 0.2s backwards;
+   	-webkit-animation: move3 1.5s 0.2s backwards;
+   	animation-iteration-count: infinite;
+   	-webkit-animation-iteration-count: infinite;
+   }
+   @-webkit-keyframes move3{
+   	0%{
+   		transform: scale(1);
+   	}
+   	30%{
+   		transform: scale(1.8);
+   	}
+   	70%{
+   		transform: scale(0.7);
+   	}
+   	100%{
+   		transform: scale(1);
+   	}
+   }
+   
+   #search{
+   	position:relative;
+   	text-align: left;
+   }
+   #search label{
+   	position:absolute;
+   	bottom:10px;
+   	display:inline-block;
+   	width:10px;
+   	height:20px;
+   	background:#000;
+   }
+   #la1{
+   	left:18px;
+   	animation: la1 1s 0.1s backwards;
+   	-webkit-animation: la1 1s 0.1s backwards;
+   	animation-iteration-count: infinite;
+   	-webkit-animation-iteration-count: infinite;
+   }
+   @-webkit-keyframes la1{
+   	0%{
+   		/*transform:scaleY(0);*/
+   		height: 10px;
+   	}
+   	50%{
+   		/*transform:scaleY(1.7);*/
+   		height: 70px;
+   	}
+   	100%{
+   		/*transform:scaleY(1);*/
+   		height: 20px;
+   	}
+   }
+   
+   #la2{
+   	left:35px;
+   	animation: la2 1s 0.1s backwards;
+   	-webkit-animation: la2 1s 0.1s backwards;
+   	animation-iteration-count: infinite;
+   	-webkit-animation-iteration-count: infinite;
+   }
+   @-webkit-keyframes la2{
+   	0%{
+   		/*transform:scaleY(0);*/
+   		height: 50px;
+   	}
+   	50%{
+   		/*transform:scaleY(1.7);*/
+   		height: 20px;
+   	}
+   	100%{
+   		/*transform:scaleY(1);*/
+   		height: 60px;
+   	}
+   }
+   
+   #la3{
+   	left:53px;
+   	animation: la3 1s 0.1s backwards;
+   	-webkit-animation: la3 1s 0.1s backwards;
+   	animation-iteration-count: infinite;
+   	-webkit-animation-iteration-count: infinite;
+   }
+   @-webkit-keyframes la3{
+   	0%{
+   		/*transform:scaleY(0);*/
+   		height: 10px;
+   	}
+   	50%{
+   		/*transform:scaleY(1.7);*/
+   		height: 40px;
+   	}
+   	100%{
+   		/*transform:scaleY(1);*/
+   		height: 8px;
+   	}
+   }   
+
+
+   #la4{
+   	left:70px;
+    animation: la4 1.5s 0.1s backwards;
+   	-webkit-animation: la4 1.5s 0.1s backwards;
+   	animation-iteration-count: infinite;
+   	-webkit-animation-iteration-count: infinite;
+   }
+   @-webkit-keyframes la4{
+   	0%{
+   		/*transform:scaleY(0);*/
+   		height: 10px;
+   	}
+   	30%{
+   		/*transform:scaleY(1.7);*/
+   		height: 50px;
+   	}
+   	70%{
+   		/*transform:scaleY(1.7);*/
+   		height: 15px;
+   	}
+   	
+   	100%{
+   		/*transform:scaleY(1);*/
+   		height: 70px;
+   	}
+   }  
+  
+   
+/* 当平板设备垂直存放时候 */
+@media (orientation:portrait){ /* orientation--方向,portrait--垂直,纵向 */
+  body{
+    /*background: red;*/
+    }
+    
+  #left{
+  	width:20%;
+  	padding-top: 20px;
+  }  
+  #left div{
+  	height:140px ;
+  	line-height:140px ;
+  }
+  
+  
+  #la1{
+  	left: 30px;
+  }
+  #la2{
+  	left: 45px;
+  }
+  #la3{
+  	/*display:none !important;*/
+  	left: 62px;
+  }
+  #la4{
+  	/*display:none !important;*/
+  	left: 80px;
+  }
+  
+  #right{
+  	width:80%;
+  }  
+  
+  #section1 figure{
+  	width: 100%;
+  	margin-top: 5px;
+  	margin-bottom: 5px;
+  }
+  #section2{
+  	
+  	height:398px !important;
+  }
+  #section2 figure{
+  	width: 48%;
+  	height:160px ;
+  	margin-top: 0px;
+  	margin-bottom: 0px;
+  }
+  #section2 figure img{
+  	height:100%;
+  }
+  #section2 figure:nth-child(even){ /* 右边两个 */
+  	/*width: 56%;*/
+  	margin-right: 0;
+  }
+  #mus3{
+  	margin-top: 38px !important;
+  }
+  #mus4{
+  	margin-top: 38px !important;
+  }
+
+}  	
+
+/* PC端 */
+@media (min-width:1360px) and (max-width:1370px){
+	
+	
+}
+
+
+

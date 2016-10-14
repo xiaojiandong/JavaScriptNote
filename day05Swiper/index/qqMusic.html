@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>QQMusic2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="../dist/css/swiper.min.css">
+
+    <!-- Demo styles -->
+
+  <link rel="stylesheet" href="css/qqMusic.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
+</head>
+<body>
+
+	<!-- 左边部分 -->
+	<div id="left">
+		<figure >
+		  <img src="../img1/per1.png" width="100%" style="border-radius: 50%;"/>	
+		  <figcaption style="text-align: center;">立即登录</figcaption>
+		</figure>
+		<div id="mymusic">
+		 <h3>我的音乐</h3> 	
+		</div>
+		<div id="music">
+		 <h3>音乐馆</h3> 	
+		</div>
+		<div id="mv">
+		 <h3>MV</h3> 	
+		</div>
+		<div id="search">
+		 <label id="la1"></label> 	
+		 <label id="la2"></label> 	
+		 <label id="la3"></label> 	
+		 <label id="la4"></label> 	
+		</div>
+	</div> <!-- left ID结束 (左边部分结束) -->
+	
+	<!-- 右边部分 -->
+    <div id="right">
+	<!-- nav导航 -->
+	<nav>
+	  <ul>
+	  	<li class="on"><a href="javascript:;">推荐</a></li>
+	  	<li><a href="javascript:;">排行榜</a></li>
+	  	<li><a href="javascript:;">歌单广场</a></li>
+	  	<li><a href="javascript:;">电台</a></li>
+	  	<li><a href="javascript:;">新歌首发</a></li>
+	  </ul>	
+	</nav>
+    <!-- Swiper -->
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" style="background-image:url(../img1/qq1.png)">
+            </div>
+            <div class="swiper-slide" style="background-image:url(../img1/qq2.png)">
+            </div>
+            <div class="swiper-slide" style="background-image:url(../img1/qq3.png)">
+            </div>
+            <div class="swiper-slide" style="background-image:url(../img1/qq4.png)">
+            </div>
+            <div class="swiper-slide" style="background-image:url(../img1/qq5.png)">
+            </div>
+            <div class="swiper-slide" style="background-image:url(../img1/qq6.png)">
+            </div>
+        </div>
+        <!-- Add Pagination -->
+         <!--     
+        <div class="swiper-pagination">
+                     底部的小圆圈  	
+        </div>
+        -->
+    </div> <!-- .swiper-container结束 -->
+        
+        <p>QQ音乐巅峰榜</p>
+        <section id="section1">
+          <figure>
+           <img src="../img1/dian1.png" width="120" height="120" />	
+           <figcaption>
+           	<label>1 一念之间</label>
+           	<label>2 年轮</label>
+           	<label>3 花千骨</label>
+           </figcaption>	
+          </figure>
+          <figure style="margin-right: 0;">
+           <img src="../img1/dian2.png" width="120" height="120" />	
+           <figcaption>
+           	<label>1 See You Agin</label>
+           	<label>2 Bad Blood</label>
+           	<label>3 Cheerleader(Remix)</label>
+           </figcaption>	
+          </figure>
+        </section>
+        
+        
+        
+        <p>热门歌单</p>
+        <section id="section2">
+          <figure>
+          	<img src="../img1/music1.png" width="100%" />
+          	<figcaption>张靓颖专辑</figcaption>
+          </figure>	
+          <figure>
+          	<img src="../img1/music2.png" width="100%"  />
+          	<figcaption>李荣浩专辑</figcaption>
+          </figure>	
+          <figure id="mus3">
+          	<img src="../img1/music3.jpg" width="100%" height="198"  />
+          	<figcaption>张杰专辑</figcaption>
+          </figure>	
+          <figure style="margin-right:0;"  id="mus4">
+          	<img src="../img1/music4.png" width="100%"  height="198"/>
+          	<figcaption>王力宏专辑</figcaption>
+          </figure>	
+        </section>
+   </div>  <!-- right ID结束 (右边结束) -->	 
+
+    <!-- Swiper JS -->
+    <script src="../dist/js/swiper.min.js"></script>
+    <script src="../dist/js/jquery-2.1.3.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        effect: 'coverflow',
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: 'auto',
+        
+        autoplay: 3000 ,
+        coverflow: {
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows : true
+        } 
+    });
+    
+
+    $(function(){
+    	// alert("aaa");
+    	
+      $("#mymusic").mouseover(function(){
+      	// alert("aa");
+      });	
+      var lis = $("ul").find("li");
+      lis.on("click" , function(){
+      	lis.prop("className" , "");
+      	$(this).prop("className" , "on");
+      });	
+      
+      var h = $(document).height();
+      $("#left").css("height" , h + "px");
+      
+      //alert($(document).width()); //1364 PC 端文档的宽
+    	
+    });
+    
+    
+    </script>
+</body>
+</html>

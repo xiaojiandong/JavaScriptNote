@@ -1,0 +1,8 @@
+
+demo里面是swiper的基本用法
+
+swiper中文网：
+http://www.swiper.com.cn/api/Effects/2015/0308/193.html
+
+swiper API手册：
+http://www.cnblogs.com/duanhuajian/p/4097310.html
