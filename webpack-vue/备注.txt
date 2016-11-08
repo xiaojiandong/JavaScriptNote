@@ -1,0 +1,19 @@
+
+入门教程 ： http://guowenfh.github.io/2016/03/24/vue-webpack-02-deploy/
+
+1 .全局安装 webpack
+   npm install webpack -g
+   npm init // 初始化项目
+
+2. 插件依赖：到package.json中去寻找
+   安装css插件 ：npm install css-loader style-loader --save-dev
+3. webpack-config.js 配置（重点）
+
+4. 安装页面刷新插件
+   npm install webpack-dev-server -g --save-dev
+   在入口文件enter.js或main.js中加入：
+          require('./first.js');require('!style!css!./style.css');require("html?interpolate!./index.html");
+   在命令行中输入：webpack-dev-server
+   在浏览器中输入：http://localhost:8080/webpack-dev-server/ （此时修改html，js，css都可以自动刷新浏览器了）
+   
+5. vue-spa单页应用和 .vue文件的应用，在vue1文件夹中

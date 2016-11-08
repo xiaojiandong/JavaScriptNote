@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>webpack测试</title>
+    <!-- <link rel="stylesheet" href="../../libs/css/index.css"/> -->
+</head>
+<body>
+
+<div id="app">
+  <h1>webpack测试</h1>  
+</div>
+
+<div id="img1">
+  <h2>测试img加载</h2>
+   <h2>测试webpack w命令</h2>
+</div>
+<h1>kajhaa22f</h1>
+
+
+<h1>1. webpack+vue基本布局</h1>
+<!-- 测试vue -->
+<div id="app1">
+    <p>{{msg}}</p>
+</div>
+
+<!-- <script src="../static/js/index.js"></script> -->
+<script src="bundle.js"></script>
+<script type="text/javascript">
+    /**
+     *webpack会分析入口文件，
+     * 解析包含依赖关系的各个文件
+     * 这些文件(模块)都通过命令：webpack bundle.js 打包到了bundle.js里面
+     * webpack会给每个模块分配一个唯一的id，通过这个id索引和访问模块
+     * 在页面启动时，先会执行enter.js中的代码，其他模块会在执行require的时候再执行
+     *
+     */
+
+    /**
+     * loader可以理解为是模块和资源的转换器，
+     * 他本身是一个函数，接受源文件作为参数，返回转换的结果，
+     * 这样可以通过require来加载任何类型的模块或文件，比如vue，jsx，less，图片等
+     * loader可以通过管道方式链式调用，
+     * 每个loader可以把资源转换成任意格式并传递给下一loader，但是最后一个loader必须返回javascript
+     */
+
+</script>
+</body>
+</html>
