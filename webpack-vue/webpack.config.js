@@ -28,7 +28,8 @@ module.exports = {
      //dist文件夹自动生成
      path : path.join(__dirname , './dist'),
      // 文件地址，使用绝对路径形式
-     filename : '[name].js',//[name]是webpack根据入口文件自动生成的名字
+     //filename : '[name].js',//[name]是webpack根据入口文件自动生成的名字
+     filename : '[name].bundle.js',//[name]是webpack根据入口文件自动生成的名字
      // 公共文件生成的地址
      publicPath : '/dist/'
   },
@@ -95,6 +96,14 @@ module.exports = {
      presets : ['es2015'],
      plugins : [
          'transform-runtime'
+          /*
+          // webpack自带的压缩插件
+          new Webpack.optimize.UglifyJsPlugin({
+             compress: {
+                 warnings: false
+             }
+          })
+          */
      ]
   },
   resolve : {
@@ -107,5 +116,6 @@ module.exports = {
      }
   },
   // 开启source-map，webpack有多种source-map，
-  devtool : 'eval-source-map'
+  //devtool : 'eval-source-map'
+  devtool : 'false' // 开发环境设为false，则压缩出来的 dist/main.bundle.js体积会变小
 };

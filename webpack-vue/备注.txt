@@ -9,3 +9,5 @@ git上下载项目
   4. src/main.js为主入口文件，dist/下的为打包后的文件
      src/components/app.vue是主入口app
      配置文件写在 webpack.config.js中
+  5. 需要安装的加载器loader和插件，在package.json中寻找
+  6. 压缩后的 dist/main.bundle.js文件体积大，用webpack -p 命令压缩，并关闭source-map功能
