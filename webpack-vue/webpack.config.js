@@ -74,7 +74,8 @@ module.exports = {
           // 图片转化，小于8k自动转化为base64的编码
           {
             test : /\.(png|jpg|gif)$/,
-            loader : 'url-loader?limit=8192'
+            //loader : 'url-loader?limit=8192' //图片大小的限制
+            loader : 'url-loader'
           },
           // html模板编译
           {
