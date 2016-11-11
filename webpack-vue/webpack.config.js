@@ -15,14 +15,14 @@ var path = require('path'); // node的path对象
 
 // extract-text-webpack-plugin插件用于将css和js分开
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var extractCSS = new ExtractTextPlugin('stylesheets/[name].css');
-var extractLESS = new ExtractTextPlugin('stylesheets/[name].less');
+//var extractCSS = new ExtractTextPlugin('./[name].css');
+//var extractLESS = new ExtractTextPlugin('stylesheets/[name].less');
 //let lessExtractor = new ExtractTextPlugin('stylesheets/[name].less');
 
 //模块导入
 module.exports = {
   // 入口文件地址，不需要写完，会自动查找
-  entry : './src/main',
+  entry : './src/main.js', //可以为数组 ['./src/main1','./src/main2']
   // 输出
   output : {
      //dist文件夹自动生成
@@ -71,6 +71,7 @@ module.exports = {
               test : /\.css$/,
               //loader : 'style!css!sass?sourceMap'
               loader : 'style-loader!css-loader'
+              //loader:  ExtractTextPlugin.extract("style-loader","css-loader")
           },
           // 图片转化，小于8k自动转化为base64的编码
           {
@@ -88,24 +89,26 @@ module.exports = {
   // .vue的配置，单独拿出来(推荐使用)
   vue : {
       loaders : {
-          css : 'style!css!autoprefixer'
+         // css : 'style!css!autoprefixer'
       }
   },
   // 转化成ES5的语法
   babel : {
-     presets : ['es2015'],
-     plugins : [
-         'transform-runtime'
-          /*
-          // webpack自带的压缩插件
-          new Webpack.optimize.UglifyJsPlugin({
-             compress: {
-                 warnings: false
-             }
-          })
-          */
-     ]
+     presets : ['es2015']
   },
+  plugins : [
+        //'transform-runtime',
+        /**/
+        // webpack自带的压缩插件
+        new Webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            }
+        }),
+        // 通过require的插件 extract-text-webpack-plugin，单独分离css打包
+        //new ExtractTextPlugin("main.css"),
+       // extractCSS
+  ],
   resolve : {
      // require时省去的扩展名，如：require('abc')不需要写成abc.js
      extensions : ['','.js','.vue','.less','.css'],
