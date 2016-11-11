@@ -2,30 +2,30 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>webpack测试</title>
+    <title>webpack+vue</title>
     <!-- <link rel="stylesheet" href="../../libs/css/index.css"/> -->
 </head>
 <body>
 
-<div id="app">
-  <h1>webpack测试</h1>  
-</div>
+<!--<h1>1. 测试 webpack+vue单文件</h1>-->
 
-<div id="img1">
-  <h2>测试img加载</h2>
-   <h2>测试webpack w命令</h2>
-</div>
-<h1>kajhaa22f</h1>
+<!-- 测试vue ，这里的内容会写在 src/components/app.vue里面 -->
+<!--<div id="app1"></div>-->
 
 
-<h1>1. webpack+vue基本布局</h1>
-<!-- 测试vue -->
-<div id="app1">
-    <p>{{msg}}</p>
+
+<div class="outer-page-wrap">
+    <div id="app" class="con-1">
+        <!-- 路由外链 -->
+        <router-view></router-view>
+    </div>
 </div>
+
+
 
 <!-- <script src="../static/js/index.js"></script> -->
-<script src="bundle.js"></script>
+<!-- dist/main.js 是打包之后的文件 -->
+<script src="dist/main.js"></script>
 <script type="text/javascript">
     /**
      *webpack会分析入口文件，
@@ -43,6 +43,49 @@
      * loader可以通过管道方式链式调用，
      * 每个loader可以把资源转换成任意格式并传递给下一loader，但是最后一个loader必须返回javascript
      */
+
+    // viewport屏幕尺寸匹配
+
+    var head = document.getElementsByTagName('head')[0];
+    var useScaledViewportMeta = function ( ) {
+        var phoneWidth = parseInt(window.screen.width);
+        var phoneScale = phoneWidth/640;
+        var meta1 = document.createElement('meta');
+        meta1.name = 'viewport';
+        meta1.content = "width=640, user-scalable=no, target-densitydpi=device-dpi,minimum-scale="+phoneScale+",maximum-scale="+phoneScale+"";
+        head.appendChild(meta1);
+    };
+    var ua = navigator.userAgent;
+    if (/Android (\d+\.\d+)/.test(ua)){
+        var version = parseFloat(RegExp.$1);
+        // andriod 2.3
+        if(version>2.3){
+            useScaledViewportMeta();
+            // andriod 2.3以上
+        }else{
+            var meta2 = document.createElement('meta');
+            meta2.name = 'viewport';
+            meta2.content = "width=640, target-densitydpi=device-dpi";
+            head.appendChild(meta2);
+        }
+        // 其他系统 iphone
+    } else {
+        useScaledViewportMeta();
+    }
+
+
+    var outerContent=document.getElementsByClassName('outer-page-wrap')[0];
+    outerContent.style.backgroundColor = '';
+    outerContent.style.width = '640px';
+    outerContent.style.margin = '0 auto';
+    outerContent.style.overFlow = 'hide';
+    outerContent.style.boxSizing = 'border-box';
+
+    setTimeout(function(){
+//      var header1=document.getElementsByClassName('header')[0];
+//      header1.style.display = 'none';
+    },1050);
+
 
 </script>
 </body>
