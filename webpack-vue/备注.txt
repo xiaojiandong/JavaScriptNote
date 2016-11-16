@@ -9,5 +9,7 @@ git上下载项目
   4. src/main.js为主入口文件，dist/下的为打包后的文件
      src/components/app.vue是主入口app
      配置文件写在 webpack.config.js中
-  5. 需要安装的加载器loader和插件，在package.json中寻找
-  6. 压缩后的 dist/main.bundle.js文件体积大，用webpack -p 命令压缩，并关闭source-map功能
+  5. 发布之前，webpack.config.js 中的devtool:false，再打包，则dist/main.bundle,js体积变小
+  6. 公共脚本写在 static/js/SUBJ.Util.js中，里面用es6的写法 export default {}
+     在main.js中 import SUBJ from "../xx/xx/SUBJ.Util.js"
+     在main.js中，挂载在Vue全局上： Vue.propotype.SUBJ = SUBJ;

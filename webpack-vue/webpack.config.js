@@ -23,6 +23,10 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
   // 入口文件地址，不需要写完，会自动查找
   entry : './src/main.js', //可以为数组 ['./src/main1','./src/main2']
+  //entry : [
+     //'webpack/hot/only-dev-server' ,
+     //'./src/main.js'
+  //],
   // 输出
   output : {
      //dist文件夹自动生成
@@ -35,10 +39,26 @@ module.exports = {
   },
   // 服务器配置相关，自动刷新
   devServer : {
+      //contentBase: './src/',
       historyApiFallback: true,
       hot: false,
       inline: true,
       grogress: true
+      // webpack设置代理，处理跨域请求,webpack-dev-server
+      /*
+      proxy: {
+          // 本地开发：http://localhost:8080/webpack-dev-server/
+          // 正式请求数据的接口地址：http://m.ikuyu.cn/topic/topiclists/2
+          '*': {
+              // http://localhost:8080/webpack-dev-server/ , localhost:8080
+              //target: 'http://m.ikuyu.cn/',
+              target: 'http://localhost:8080/webpack-dev-server/',
+              //host:'http://m.xxx.cn', // 其他服务器上的资源
+              secure: false,
+              changeOrigin: true
+          }
+      }
+       */
   },
   // 加载器
   module : {
@@ -70,8 +90,8 @@ module.exports = {
           {
               test : /\.css$/,
               //loader : 'style!css!sass?sourceMap'
-              loader : 'style-loader!css-loader'
-              //loader:  ExtractTextPlugin.extract("style-loader","css-loader")
+              //loader : 'style-loader!css-loader'
+              loader:  ExtractTextPlugin.extract("style-loader","css-loader") //压缩成独立的.css文件
           },
           // 图片转化，小于8k自动转化为base64的编码
           {
@@ -89,12 +109,14 @@ module.exports = {
   // .vue的配置，单独拿出来(推荐使用)
   vue : {
       loaders : {
-         // css : 'style!css!autoprefixer'
+          css : 'style!css!autoprefixer',
+          html : 'html-loader'
       }
   },
   // 转化成ES5的语法
   babel : {
-     presets : ['es2015']
+     presets : ['es2015'],
+     plugins: ['transform-runtime']
   },
   plugins : [
         //'transform-runtime',
@@ -106,7 +128,7 @@ module.exports = {
             }
         }),
         // 通过require的插件 extract-text-webpack-plugin，单独分离css打包
-        //new ExtractTextPlugin("main.css"),
+        new ExtractTextPlugin("main.css"),
        // extractCSS
   ],
   resolve : {
@@ -119,6 +141,6 @@ module.exports = {
      }
   },
   // 开启source-map，webpack有多种source-map，
-  //devtool : 'eval-source-map'
-  devtool : 'false' // 开发环境设为false，则压缩出来的 dist/main.bundle.js体积会变小
+  devtool : 'eval-source-map'
+  //devtool : 'false' // 开发环境设为false，则压缩出来的 dist/main.bundle.js体积会变小
 };

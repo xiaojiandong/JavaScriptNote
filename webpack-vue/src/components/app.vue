@@ -4,7 +4,6 @@
 <!--<template lang='jade'>-->
 <template id="app11">
    <div class="c1">
-
       <!-- 头部部分 -->
       <top-bar></top-bar>
 
@@ -59,16 +58,16 @@
 
 <script type="text/ecmascript-6">
 // 头部部分
-import topBar from "./topBar.vue";
+import topBar from "./top_components/topBar.vue";
 // 导航部分
-import navList from './navList.vue';
+import navList from './top_components/navList.vue';
 // 商品详情
 import goodDetail from './goodDetail.vue';
 
 
  // es6
  export default {
-   el : '#app11',
+   //el : '#app11',
    //el : 'body',
    // data : function(){},下面是es6的写法
    components : {
@@ -124,7 +123,7 @@ import goodDetail from './goodDetail.vue';
 
 <style lang="">
     .c1{
-       background: pink;
+       /*background: pink;*/
     }
     .c1 h1{
         color: red;

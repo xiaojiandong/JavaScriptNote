@@ -18,32 +18,40 @@ require("html?interpolate!../index.html"); // 在入口文件main.js中引入htm
 //require('../index.less');
 
 // 在main.js入口内，引入需要加载的.css或.less
-require('../index1.css'); // 有效
-require('../index1.less'); // 有效
+//require('../index1.css'); // 有效
+//require('../index1.less'); // 有效
+// 在webpack.config.js配置里面，都是相对于 ./src的路径
+require('./static/css/index1.less'); // 有效
 
 // !style!css!  !style!css!less!
 
 /*** main.js ***/
 // es6语法： (可以直接 import Vue from "vue")
 // 引入 Vue 及vue-router
+
 import Vue from "../node_modules/vue/dist/vue.min.js";
-import VueRouter from "vue-router"; // es6会自动查找
+import VueRouter from "vue-router"; // es6会自动查找,路由
+import VueResource from "vue-resource"; // es6会自动查找，ajax请求
+import SUBJ from "./static/js/SUBJ.Util.js"; // 公共部分js，里面是es6写法
+
 Vue.use(VueRouter);
+Vue.use(VueResource); // 在main.js内部引入并注册 vue-resource
+
+Vue.prototype.SUBJ = SUBJ; // 将全局js挂载到Vue上
 
 // 外部引入别的库都可以用这样的方式
 // 引入我们编写的 .vue 单文件
 import index from "./components/app.vue";
-
-
-// 导航部分
-import navList from "./components/navList.vue"; // 导航组件
-import home from "./components/home.vue"; // 首页
-import select from "./components/select.vue"; // 评选
-import topic from "./components/topic.vue"; // 话题
-import activity from "./components/activity.vue"; // 活动
+import login from "./components/top_components/login.vue"; // 登录
+import sign from "./components/top_components/sign.vue"; // 注册
+import myInfo from "./components/top_components/myInfo.vue"; // 我的主页
+import home from "./components/home_components/home.vue"; // 首页
+import select from "./components/select_components/select.vue"; // 评选
+import topic from "./components/topic_components/topic.vue"; // 话题
+import activity from "./components/activity_components/activity.vue"; // 活动
 
 // 首页下面 swiper滑动，每个swiper对应的内容
-import swiperContent from "./components/swiperContent.vue"; // 每个子swiper点进去的内容
+// import swiperContent from "./components/home_components/swiperContent.vue"; // 每个子swiper点进去的内容
 
 
 
@@ -85,13 +93,27 @@ router.map({ // 定义路由映射
           '/activity' : { // 活动
              name : 'activity',
              component : activity
-          },
+          }
+          /*
           // 每个子swiper点进去后对应的内容
           '/swiperContent' : {
                 name : 'swiperContent',
                 component : swiperContent
           }
+          */
         }
+    },
+    '/login' : { // 登录页面路由
+       name : 'login',
+       component : login
+    },
+    '/sign' : { // 注册页面路由
+       name : 'sign',
+       component : sign
+    },
+    '/myInfo' : { // 我的主页路由
+       name : 'myInfo',
+       component : myInfo
     }
     /*
     '/list' : {
