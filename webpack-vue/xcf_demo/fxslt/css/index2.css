@@ -1,0 +1,131 @@
+
+
+.xcf-animate-hide{
+    /*animation: xcfAimateHide 0.2s 0.2s backwards;*/
+    /*-webkit-animation: xcfAimateHide 0.2s 0.2s backwards;*/
+    /*-webkit-transform: scale(0);*/
+}
+@-webkit-keyframes xcfAimateHide {
+    0%{
+       -webkit-transform: scale(1);
+    }
+    100%{
+        -webkit-transform: scale(0);
+    }
+}
+
+
+
+
+/* 第2个页面：论坛议程words*/
+.ltyc-words{
+    position: fixed;
+    width: 50%;
+    z-index: 12;
+    top: 9%;
+    left: 25%;
+    animation: ltycWordsAnimate 0.3s 0.8s backwards;
+    -webkit-animation: ltycWordsAnimate 0.3s 0.8s backwards;
+}
+@-webkit-keyframes ltycWordsAnimate {
+    0%{
+        -webkit-transform: scale(0);
+    }
+    100%{
+        -webkit-transform: scale(1);
+    }
+}
+
+/* 论坛简介+注意事项 */
+.lt-desc,
+.lt-tip{
+    position: fixed;
+    bottom: 18%;
+    left: 2%;
+    /*width: 30%;*/
+    font-size: 0.65rem;
+    /*color: #666;*/
+    color: #ffff00;
+    /*border: 2px solid #f00;*/
+    animation: ltycWordsAnimate 0.3s 0.8s backwards;
+    -webkit-animation: ltycWordsAnimate 0.3s 0.8s backwards;
+}
+.lt-tip{
+    left: 20%;
+}
+/*注意事项弹窗*/
+.notices-tip-img{
+  display: none;
+  width: 90%;
+  margin: 0 auto;
+  animation: maskAnimateShow 0.3s 0.1s backwards;
+  -webkit-animation: maskAnimateShow 0.3s 0.1s backwards;
+}
+
+/*修改星星页面，底部导航*/
+.detail_menu{
+  height: 1.25rem;
+  list-style: none !important;
+  box-sizing: border-box;
+}
+.detail_menu .item:after{
+  background: none !important;
+}
+
+
+/*大消费左边*/
+.detail_menu .daxiaofei{
+    position: absolute;
+    /*background: #0000ff;*/
+    width: 25%;
+    z-index: 20;
+    height: 100%;
+    box-sizing: border-box;
+}
+/* 周期中间 */
+.detail_menu .zhouqi{
+     position: absolute;
+     z-index: 20;
+     height: 100%;
+     /*background: red;*/
+     width: 25%;
+     left: 25%;
+     box-sizing: border-box;
+}
+/* 金融右边 */
+.detail_menu .jinrong{
+      position: absolute;
+      left: 50%;
+      width: 25%;
+      z-index: 20;
+      height: 100%;
+      box-sizing: border-box;
+  }
+/* 深港澳右边 */
+.detail_menu .sga-nav{
+    display: none;
+    position: absolute;
+    left: 75%;
+    width: 25%;
+    z-index: 20;
+    height: 100%;
+    box-sizing: border-box;
+    animation: sgaNavAnimate 0.4s 0.3s backwards;
+    -webkit-animation: sgaNavAnimate 0.4s 0.3s backwards;
+}
+@-webkit-keyframes sgaNavAnimate {
+    0%{
+        opacity: 0;
+       -webkit-transform: translateY(7rem);
+    }
+    100%{
+        opacity: 1;
+        -webkit-transform: translateY(0rem);
+    }
+}
+
+/* 新加的深港通背景色 */
+.detail_item:nth-child(8),
+.detail_item:nth-child(9){
+  color: #6f03d3;
+}
