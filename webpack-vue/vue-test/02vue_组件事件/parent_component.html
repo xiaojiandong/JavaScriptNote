@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>vue组件props通信</title>
+    <link rel="stylesheet" href="vue_component.css"/>
+    <style>
+     .component3{
+         margin: 8px;
+         padding: 8px;
+         background: #777777;
+     }
+     .component2{
+         margin: 8px;
+         padding: 8px;
+         background: pink;
+     }
+    </style>
+</head>
+<body>
+
+<h1>7. prop组件通信</h1>
+<div id="app1">
+    <!-- 普通组件 -->
+    <child msg="你好吗"></child>
+    <child1 my-msg-er="驼峰命名"></child1>
+    <!-- 动态双向绑定的组件 -->
+    <input type="text" v-model="msg2"/>
+    <child2 v-bind:my-msg-b="msg2"></child2>
+</div>
+
+
+
+<h1>8. 父子组件通信: $parent,$root,$children </h1>
+<!-- 最小组件ccc模板 -->
+<template id="ccc">
+  <br><br>
+  <span>最小子组件ccc:</span>
+  <input style="color: #0000cc" type="text" v-model="msg_c"/>
+  <button style="color: #0000cc" @click="set_parent1">$parent-c设置上级b资料</button>
+  <button style="color: #0000cc" @click="set_root1">$root1-c追加根组件c资料</button>
+</template>
+<!-- 子组件bbb模板 -->
+<template id="bbb">
+ <div style="border: 2px solid #000;margin: 8px;padding: 8px;">
+  <span>子组件bbb:</span>
+  <input style="color: #f600f6" type="text" v-model="msg_b"/>
+  <button style="color: #f600f6"
+          @click="set_parent1">$parent-b清空上级a资料</button>
+  <span style="color: #f600f6" >msg_b : {{msg_b | json}}</span>
+  <!--<span style="background: green" >aaa</span>-->
+  <ccc></ccc>
+ </div>
+</template>
+<!-- 根组件模板aaa -->
+<div id="aaa" style="border: 2px solid red;padding: 8px;">
+  <p>注意：子组件尽量不要用$parent和$root去修改父组件的数据</p>
+  <p>aaa根组件模板, message_a : {{message_a | json}}</p>
+  <button @click="set_bbb0">$children[0]设置子组件b资料</button>
+  <button @click="set_bbb1">$children[1]设置子组件b资料</button>
+  <button @click="set_bbb2">$children[2]设置子组件b资料</button>
+  <bbb></bbb>
+  <bbb></bbb>
+  <bbb></bbb>
+</div>
+
+
+
+
+
+<!-- 最小的组件模板component3 -->
+<template id="component3">
+    <div class="component3"><br>
+        <p>c3组件灰色 msg : {{msg | json}}</p>
+        <input type="text" v-model="msg"/>
+        <button @click="c3_do1">c3_do1广播事件至根组件</button>
+        <button @click="c3_do2">c3_do2 $parent 设定资料</button>
+        <button @click="c3_do3">c3_do3 $root 设定资料</button>
+        <button @click="c3_do4">c3_do4 all_events 事件</button>
+        <button @click="c3_do5">c3_do5 all_events1 事件</button>
+    <span v-for="nav in navs">{{nav.name}} </span>
+    </div>
+</template>
+
+<!-- 子组件模板c2 -->
+<template id="component2">
+   <div class="component2"><br>
+    <p>组件 c2粉红色 msg：{{msg | json}}</p>
+    <input type="text" v-model="msg"/>
+    <button @click="c2_do1">c2_do1广播事件至根组件</button>
+    <button @click="c2_do2">c2_do2 清空 $parent 资料</button>
+    <button @click="c2_do3">c2_do3 设置 $children 资料</button>
+    <button @click="c2_do4">c2_do4 自定义回调事件v-on:eventc4="handle_it2"</button>
+    <!--<component3></component3>-->
+    <component3 v-ref:list11 v-for='1 in 3' ></component3>
+   </div>
+</template>
+<!-- 根组件模板 -->
+<div id="component1"><hr/>
+  <h1>9. 事件：$on,$emit,$dispatch,$broadcast</h1>
+  <p>$on() 监听事件;</p>
+  <p>$emit() 在组件自身上面触发事件;</p>
+  <p>$dispatch() 派发事件，事件沿着父链冒泡;</p>
+  <p>$broadcast() 事件广播，事件向下导向所有后代;</p>
+  <h3>9.1 根组件 message ：{{message | json}}</h3>
+  <h3>9.2 使用v-on:eventc4="handle_it2"自定义回调事件</h3>
+  <h3>9.3 子组件索引，在组件标签中使用 v-ref:profile</h3>
+  <button @click="c1_do1">c1_do1 $emit();组件 c2[0] 设置子组件的资料并追加message</button>
+  <button @click="c1_do2">c1_do2组件 c2[1] 设置子组件的资料</button>
+  <button @click="c1_do3">c1_do3组件 c2[2] 设置子组件的资料</button>
+  <button @click="c1_do4">c1_do4统一设置子组件们输入框的资料</button>
+  <!-- 内部包含了c2组件和component3组件 -->
+  <c2 v-on:eventc4="handle_it2"></c2>
+  <c2></c2>
+  <c2></c2>
+</div>
+
+
+
+<div id="app2">
+</div>
+
+
+
+
+<template id="app-header">
+  <div style="background: #ccc">
+   <div>{{msg}}</div>
+   <button @click="appHeaderClick">app-header的点击事件handle到父级</button>
+   <br/>
+   <button v-show="isHide" @click="appHeaderToFooterClick">
+      点击事件$emit到平级的app-footer
+   </button>
+  </div>
+</template>
+<template id="app-footer">
+   <div>{{msg}}</div>
+</template>
+<template id="app">
+ <div>
+  <h5>{{msg}}</h5>
+  <!-- 在父组件app内，无法访问子组件app-header的data，所以app-header隐藏  -->
+  <app-header v-on:event_app="handle_app" v-show="someChildProperty">
+  </app-header>
+  <app-footer></app-footer>
+ </div>
+</template>
+
+<div id="vm3">
+    <h1>10 使用slot分发数据，父子作用域是独立的</h1>
+    <p>在父组件里面不能直接使用子组件的属性</p>
+    <app></app>
+</div>
+
+
+
+
+
+<template id="app4">
+ <div style="border: 2px solid #f00">
+    <p>{{msg}}</p>
+    <child-component></child-component>
+    <!-- v后面跟随的值代表父组件内的data，
+    在这里子组件child-component1是访问不到的,
+     要想子组件访问到，必须在js的模板内写-->
+    <child-component1 v-show=""></child-component1>
+ </div>
+</template>
+<div id="vm4">
+    <app4></app4>
+</div>
+
+<h1>11. 单个slot</h1>
+<!-- 职位：企业主管 -->
+<div id="vm5">
+    <my-component>
+       <p>4. ~view层(-- 4~6条内容会被追加到my-component后面去 --)</p>
+       <p>5. this is some original content</p>
+       <p>6. this is some more original content</p>
+    </my-component>
+</div>
+<!-- 职位：职位工程师a君 -->
+<template id="my-component">
+   <div>
+      <h2>1. ~template层</h2>
+      <h2>2. this is my template</h2>
+      <slot>
+          3. view层中的内容都会显示在这里
+      </slot>
+   </div>
+</template>
+
+
+<h1>12. 具名slot</h1>
+<template id="multi-insertion">
+  <div style="background: #ccc">
+    <slot name="five"></slot>
+    <slot name="four"></slot>
+    <slot name="one"></slot>
+    <slot></slot>
+    <slot name="two"></slot>
+  </div>
+</template>
+<template id="multi-insertion1">
+  <div style="background: pink">
+    <slot></slot>
+    <slot name="five"></slot>
+    <slot name="four"></slot>
+    <slot name="one"></slot>
+    <slot name="two"></slot>
+  </div>
+</template>
+<template id="parent2">
+  <multi-insertion>
+    <p slot="one">1. One</p>
+    <p slot="two">2. Two</p>
+    <p>3. Default</p>
+    <h4 slot="four">4. Four</h4>
+    <p slot="five">5. Five</p>
+    <h5>3. Default</h5>
+  </multi-insertion>
+  <multi-insertion1>
+      <p slot="one">1. One</p>
+      <p slot="two">2. Two</p>
+      <p>3. Default</p>
+      <h4 slot="four">4. Four</h4>
+      <p slot="five">5. Five</p>
+      <h5>3. Default</h5>
+  </multi-insertion1>
+</template>
+<div id="vm6">
+    <parent2></parent2>
+</div>
+
+
+
+<!--<script src="http://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>-->
+<script src="vue.1.0.24.min.js"></script>
+<script src="parent_component.js"></script>
+</body>
+</html>

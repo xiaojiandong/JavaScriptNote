@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>1. vue动态组件事件</title>
+    <link rel="stylesheet" href="vue_component.css"/>
+    <style>
+      .home-class{
+          border: 4px solid #f00;
+      }
+      .posts-class{
+          border: 2px solid #00ff00;
+      }
+      .archive-class{
+          border: 4px solid #0000cc;
+      }
+      /* 组件过渡切换 */
+      .fade-transition{
+        transition: opacity 0.2s ease;
+        -webkit-transition: opacity 0.2s ease;
+      }
+      .fade-enter, .fade-leave{
+          opacity: 0;
+      }
+      .box{
+        width: 220px;
+        height: 350px;
+        border: 2px solid #f00;
+        float: left;
+        margin: 5px;
+      }
+      .box:hover{
+         border: 5px solid #000;
+      }
+    </style>
+</head>
+<body>
+
+<h1>1. 动态组件事件</h1>
+<template id="c1">
+  <div class="c1" style="background: #ccc">
+    <p><input type="text" v-model="a"/> {{a}}</p>
+    <button @click="m('home')">home</button>
+    <button @click="m('posts')">posts</button>
+    <button @click="m('archive')">archive</button> -
+    <button @click="m(str1)">{{str1}}</button>
+  </div>
+</template>
+<p>1.1 注意：activate钩子只作用于动态组件切换
+    或静态组件初始化渲染的过程中，
+    不作用于实例方法手工插入的过程中
+</p>
+<p>1.2 动态组件之间的切换过度</p>
+<div id="app1">
+   <div v-bind:class="classN" style="">
+      <!-- 保留c1子组件中input的值，加 keep-alive -->
+      <!-- 组件component根据 currentView 指向的变化而变化(home/posts/archive) -->
+      <component
+               :is=currentView
+               keep-alive
+               transition="fade"
+               transition-mode="out-in">
+      </component>
+   </div>
+</div>
+
+
+
+<h1>2. 子组件和v-for，父组件传值给子组件的props</h1>
+<template id="my-component">
+  <div>
+      父index:{{index}},
+      父props:{{str1}}(来自父组件的传值),
+      子item:{{item.b}}(子组件自身的值)
+  </div>
+</template>
+<div id="app2">
+    <!-- 在自定义标签中带有 :str1，都是传入到组件的props中的数据  -->
+    <my-component
+            v-for="item in items"
+            :str1="item"
+            :index="$index">
+    </my-component>
+</div>
+
+<h1>3. 可复用的组件 : props，事件，slot</h1>
+<h3>3.1 vuejs组件API来自3部分：props，事件和slot插槽</h3>
+<h4>props : 允许外部环境传递数据给子组件</h4>
+<h4>事件 : 允许子组件触发外部环境的方法</h4>
+<h4>slot : 允许外部环境插入内容到组件的视图结构内</h4>
+<h3>3.2 slot标签的作用：1)能在子组件内部写其他内容；2)如果子组件外部没有写内容，则使用子组件内部slot的内容</h3>
+<template id="my-component1">
+  <div class="box">
+     <slot name="words-always">(始终都会存在的slot)</slot>
+     <slot name="main-text"><p>标签内默认使用中文：你好</p></slot>
+     <slot name="avatar">
+       <!-- 如果外部调用my-component1这个组件时，没有传img则默认用下面的img -->
+       <img width="200" src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png"/>
+     </slot>
+  </div>
+</template>
+<div id="app3" style="overflow: hidden">
+    <my-component1
+            :foo="baz"
+            :bar="qux"
+            @click="doThis('click')"
+            @mouseover="onMouseOver('mouseover')">
+      <img slot="avatar" src="http://vuejs.org.cn/images/logo.png" width="200"/>
+      <p slot="main-text">Hello - 1</p>
+      <p slot="main-text">slot插槽的作用在于1：
+          能够在一个组件内部写其他内容；
+          相当于占了一个空位置
+      </p>
+    </my-component1>
+    <my-component1
+            :foo="baz"
+            :bar="qux"
+            @click="doThis('javascript')"
+            @mouseover="onMouseOver('学习javascript')">
+        <img slot="avatar" src="http://vuejs.org.cn/images/logo.png" width="200"/>
+        <p slot="main-text">Hello - 2</p>
+        <p slot="main-text">slot作用2：
+            外部调用子标签的内容，如果外部调用时没有提供内容的话，
+            标签就会使用自己默认的内容
+        </p>
+    </my-component1>
+    <my-component1
+            :foo="baz"
+            :bar="qux"
+            @click="doThis('nodejs')"
+            @mouseover="onMouseOver('nodejs后台服务器')"
+            @mouseout="onMouseOut()">
+        <!--<img slot="avatar" src="http://vuejs.org.cn/images/logo.png" width="200"/>-->
+        <!--<p slot="main-text">Hello - 3</p>-->
+        <p slot="words-always">这里将始终都在子组件存在的slot给覆盖了</p>
+    </my-component1>
+</div>
+
+
+
+<h1>4. 测试组件注册方法3种</h1>
+<template id="lay">
+ <h2>{{msg}} - <br><span v-for="str in str2">{{str.name}}</span></h2>
+</template>
+<div id="app4">
+  <layery1 :str2="arr"></layery1>
+</div>
+
+
+
+<h1>5. 表单控件</h1>
+
+<div id="app5">
+ <div style="padding: 10px;border: 2px solid #f00">
+   <p>5.1 input checkbox 多选框双向绑定</p>
+   <p>选中的名字：{{checkedNames | json}}</p>
+   <input type="checkbox" id="jack" value="jack" v-model="checkedNames"/>
+   <label for="jack">jack</label>
+   <input type="checkbox" id="john" value="john" v-model="checkedNames"/>
+   <label for="john">john</label>
+   <input type="checkbox" id="mike" value="mike" v-model="checkedNames"/>
+   <label for="mike">mike</label>
+ </div>
+ <div style="padding: 10px;border: 2px solid #f00">
+   <p>5.2 input radio 单选框</p>
+   <p>选中的性别：{{pickedSex}}</p>
+   <input type="radio" id="man" value="man" v-model="pickedSex" />
+   <label for="man">男的</label>
+   <input type="radio" id="women" value="women" v-model="pickedSex"/>
+   <label for="women">女的</label>
+   <input type="radio" id="zhong" value="中性" v-model="pickedSex"/>
+   <label for="zhong">中性</label>
+ </div>
+ <div>
+    <div>
+        <p>5.3 select下拉框</p>
+        <select v-model="selectedCountry">
+            <option value="中国">中国</option>
+            <option value="美国2">美国</option>
+            <option value="英国3">英国</option>
+        </select>
+        <span>selectedCountry : {{selectedCountry}}</span>
+    </div>
+    <div>
+        <p>5.4 下拉框2</p>
+        <select v-model="selectedProvince" @change="provinceChange(selectedProvince)">
+          <option v-for="province in provinceLists"
+                  value="{{province.name}}">
+             {{province.name}}
+          </option>
+        </select>
+        <span>selectedProvince : {{selectedProvince}}</span>
+    </div>
+ </div>
+</div>
+
+
+<!--<script src="http://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>-->
+<script src="vue.1.0.24.min.js"></script>
+<script src="event_component.js"></script>
+</body>
+</html>
