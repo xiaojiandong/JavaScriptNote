@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>过滤查询</title>
+    <!-- <link rel="stylesheet" href="../../libs/css/index.css"/> -->
+</head>
+<body v-cloak="">
+
+<h1 id="app">
+   <h>过滤查询</h>
+    <!--<input type="text" v-model="msg" /> <br/>-->
+    <!--<p>输入字段：{{msg}}</p>-->
+    <hr/>
+
+    <span>输入查询的查询信息：</span>
+    <input type="text" v-model="testMsg" />
+    <!--<span v-text="testMsg"></span>-->
+    <br/>
+    <p>董秘列表</p>
+    <ul>
+       <li style="font-size: 18px" v-for="list in personlist |
+           filterBy nameFilter in 'name' |
+           filterBy codeFilter in 'code' | filterBy companyFilter in 'company'">
+         名字：{{list.name | sum}},
+         公司：{{list.company}},
+         股票代码：{{list.code}}
+       </li>
+    </ul>
+</h1>
+
+
+ <!--<script src="src/static/js/vue.1.0.24.min.js"></script>-->
+ <script src="http://cdn.bootcss.com/vue/1.0.24/vue.min.js"></script>
+<!--<script src="http://cdn.bootcss.com/jquery/2.1.3/jquery.js"></script>-->
+<script type="text/javascript">
+
+// http://www.xcf.cn/zhuanti/kuyu_v2/filter.html
+Vue.filter('testF2121212' ,{
+      read : function( val ){ // model -> view 在更新 `<input>` 元素之前格式化值
+          return val;
+      },
+      write : function(newVal , oldVal){
+          console.log("newVal:"+newVal);
+          console.log("oldVal:"+oldVal);
+          return newVal;
+      }
+});
+
+// 判断一个长字符串中是否包含一个短字符串
+var hasSpecailStrFromLongStr = function(longStr,specailStr){
+    if(longStr.indexOf(specailStr) >= 0){ // 存在指定的str
+        return true;
+    }else{ // 不存在
+        return false;
+    }
+};
+// 原生 js 去掉字符串
+function trim(str) {
+    return str.replace(/(^\s+)|(\s+$)/g, "");
+}
+// 封装方法，判断用户输入的字符串属于 名字/公司/代码
+var hasFilterStr = function(personlist,inputStr){
+    var filterType;
+    for( var i = 0 ; i < personlist.length ; i ++ ){
+//        console.log(personlist[i].name);
+        if( hasSpecailStrFromLongStr(personlist[i].name, inputStr || ' ')){
+            filterType = '名字';
+//            break;
+        }
+        if( hasSpecailStrFromLongStr(personlist[i].company, (inputStr || ' ') ) ){
+            filterType = '公司';
+//            break;
+        }
+        if( hasSpecailStrFromLongStr(personlist[i].code, (inputStr || ' ') ) ){
+            filterType = '代码';
+//            break;
+        }
+    }
+//    console.log('filterType : ' + filterType);
+    return filterType;
+};
+
+var app1 = new Vue({
+    el : '#app',
+    data : {
+        testMsg : '',
+        msg : '模糊查询',
+        nameFilter : '',
+        codeFilter : '',
+        companyFilter : '',
+        personlist : [
+            {name : '张三',company:'长江证券',code : 'A12005'},
+            {name : '张麻子',company:'长发证券',code : 'A04005'},
+            {name : '刘爱华',company:'必康股份',code : 'C02013'},
+            {name : '刘天',company:'东吴股份',code : 'A12507'},
+            {name : '刘开朗',company:'新宝股份',code : 'B12746'},
+            {name : '李华',company:'中融基金',code : 'C301005'},
+            {name : '李三华',company:'东南控股',code : 'E301021'},
+            {name : '刘麻三',company:'兴业证券',code : 'A31062'}
+        ]
+    },
+    filters: {
+        sum: function (value) {
+            return value;
+        }
+    },
+    watch : {
+        'testMsg' : function(){
+            var that = this;
+//            console.log( 'this.$data.testMsg : ' );
+//            console.log( this.$data.testMsg );
+//            this.$data.nameFilter = '' || this.$data.testMsg;
+            //this.$data.codeFilter = '' || this.$data.testMsg;
+            //this.$data.companyFilter = '' || this.$data.testMsg;
+            setTimeout(function(){
+                var type = hasFilterStr( that.$data.personlist , that.$data.testMsg);
+                console.log('type : ' + type);
+                if(type == '名字'){
+                     that.$data.nameFilter = that.$data.testMsg;
+                }else if(type == '公司'){
+                    that.$data.companyFilter = that.$data.testMsg;
+                }else if(type == '代码'){
+                    that.$data.codeFilter = that.$data.testMsg;
+                }else if(typeof(type) == 'undefined'){ // 用户并未输入查询信息
+                    that.$data.nameFilter = '';
+                    that.$data.companyFilter = '';
+                    that.$data.codeFilter = '';
+//                    console.log(that.$data.nameFilter);
+                }
+            },500);
+
+        }
+    },
+    ready : function(){
+        var that = this;
+        // 循环找出 personlist 中的name值
+        /*
+        for(var i=0 ;i < that.personlist.length ; i++){
+//            console.log(that.personlist[i].name);
+            var a = hasSpecailStrFromLongStr(that.personlist[i].name , '开');
+            console.log( a );
+            if( a == true ){
+                alert('aaa');
+                break;
+            }
+        }
+        */
+
+        hasFilterStr(that.personlist);
+    }
+});
+
+</script>
+</body>
+</html>
