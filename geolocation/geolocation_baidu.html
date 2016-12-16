@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>百度地图定位</title>
+<script src="http://api.map.baidu.com/api?v=1.4" type="text/javascript"></script>
+<style>
+#div1{width:500px; height:500px; border:1px #000 solid;}
+</style>
+
+</head>
+
+<body>
+<h1>百度地图定位</h1>
+<input type="button" value="请求获取定位" id="input1" style="padding: 10px;margin: 10px"/>
+<div id="div1"></div>
+
+<script>
+
+    console.log(navigator.geolocation);
+    window.onload=function(){
+        var oInput=document.getElementById('input1');
+        oInput.onclick=function(){
+
+            console.log('百度地图定位 : ');
+
+            navigator.geolocation.getCurrentPosition(function(position){ // 成功回调
+
+                console.log( 'position : ' );
+                console.log(position);
+
+                var x=position.coords.longitude; // 114.05502299999999
+                var y=position.coords.latitude; // 22.521523
+
+                // 中投国际坐标： 114.046399,22.54938
+
+                var map=new BMap.Map("div1"); // 创建map实例
+
+                console.log('x : ' + x + ' ; y : ' + y);
+                console.log('map : ');
+                console.log(map);
+
+                var pt=new BMap.Point(x,y); // 初始化地图
+                //var pt=new BMap.Point(114.046399,22.54938); // 初始化地图
+                map.centerAndZoom(pt,15); // 设置中心点和地图级别
+                map.enableScrollWheelZoom(true);
+
+                map.addControl(new BMap.MapTypeControl());   //添加地图类型控件
+
+                var marker1=new BMap.Marker(pt);
+                map.addOverlay(marker1);
+            },function( err ){ // 失败回调
+                console.log('失败回调err : ');
+                console.log(err);
+            })
+        }
+    };
+
+
+    var getUaDeviceType = function(){
+        var type;
+        var ua = navigator.userAgent.toLowerCase();
+        //console.log(ua);
+        if(ua.indexOf('android') != -1){//android
+            type = 'android';
+        }else if(ua.indexOf('iphone os') != -1 || ua.indexOf('ipad') != -1){
+            type = 'ios';
+        }else{
+            type = 'pc';
+        };
+        return type;
+    };
+
+
+    if( getUaDeviceType() != 'pc' ){
+      var input1 = document.querySelector('#input1');
+      var div1 = document.querySelector('#div1');
+
+
+        input1.style.width = '30%';
+        input1.style.fontSize = '25px';
+
+        div1.style.width = '90%';
+        div1.style.height = '600px';
+        div1.style.margin = '0 auto';
+
+
+    }
+
+
+
+</script>
+</body>
+</html>
