@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>判断手指滑动方向</title>
+    <meta name="author" content="Alvaro Trigo Lopez" />
+    <meta name="description" content="fullPage full-screen backgrounds." />
+    <meta name="keywords"  content="fullpage,jquery,demo,screen,fullscreen,backgrounds,full-screen" />
+    <meta name="Resource-type" content="Document" />
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .ourter-wrap{
+            width: 100%;
+            height: 100%;
+            /*border: 6px solid red;*/
+            background: rgba(0,10,200,0.6);
+            box-sizing: border-box;
+            overflow: hidden;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="ourter-wrap js_ourter_wrap">
+  <!-- 第1页 -->
+  <div class="page-1 js_page_1" attr-target="t-page1">
+      判断手指滑动方向<br>
+      判断手指滑动方向<br>
+      判断手指滑动方向<br>
+      判断手指滑动方向<br>
+      判断手指滑动方向<br>
+      判断手指滑动方向<br>
+      判断手指滑动方向<br>
+      判断手指滑动方向<br>
+      判断手指滑动方向<br>
+      判断手指滑动方向<br>
+      判断手指滑动方向<br>
+      判断手指滑动方向<br>
+      判断手指滑动方向<br>
+      判断手指滑动方向<br>
+      判断手指滑动方向<br>
+      判断手指滑动方向<br>
+      判断手指滑动方向<br>
+      判断手指滑动方向<br>
+      判断手指滑动方向<br>
+      判断手指滑动方向<br>
+      判断手指滑动方向<br>
+      判断手指滑动方向<br>
+  </div>
+</div>
+
+
+<script src="http://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+<script>
+
+    var useScaledViewportMeta = function ( ) {
+        var phoneWidth = parseInt(window.screen.width);
+        var phoneScale = phoneWidth/640;
+        $('head').append('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi,minimum-scale='+phoneScale+',maximum-scale='+phoneScale+'">');
+    };
+    var ua = navigator.userAgent;
+    if (/Android (\d+\.\d+)/.test(ua)){
+        var version = parseFloat(RegExp.$1);
+        // andriod 2.3
+        if(version>2.3){
+            useScaledViewportMeta();
+            // andriod 2.3以上
+        }else{
+            $('head').append('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+        }
+        // 其他系统
+    } else {
+        useScaledViewportMeta();
+    }
+
+
+    var winH = $(window).height();
+    var winW = $(window).width();
+    $('.js_ourter_wrap').height(winH);
+    $('.js_ourter_wrap').width(winW);
+
+    //获得角度
+    function getAngle(angx, angy) {
+        return Math.atan2(angy, angx) * 180 / Math.PI;
+    };
+    //根据起点终点返回方向 1向上 2向下 3向左 4向右 0未滑动
+    function getDirection(startx, starty, endx, endy) {
+        var angx = endx - startx;
+        var angy = endy - starty;
+        var result = 0;
+        //如果滑动距离太短
+        if (Math.abs(angx) < 2 && Math.abs(angy) < 2) {
+            return result;
+        }
+        var angle = getAngle(angx, angy);
+        if (angle >= -135 && angle <= -45) {
+            result = 1;
+        } else if (angle > 45 && angle < 135) {
+            result = 2;
+        } else if ((angle >= 135 && angle <= 180) || (angle >= -180 && angle < -135)) {
+            result = 3;
+        } else if (angle >= -45 && angle <= 45) {
+            result = 4;
+        }
+        return result;
+    }
+
+
+    //手指接触屏幕
+    document.addEventListener("touchstart", function(e) {
+        startx = e.touches[0].pageX;
+        starty = e.touches[0].pageY;
+    }, false);
+
+
+    //手指离开屏幕
+    document.addEventListener("touchend", function(e) {
+        var endx, endy;
+        endx = e.changedTouches[0].pageX;
+        endy = e.changedTouches[0].pageY;
+        var target = e.target;
+        var attrTarget =target.getAttribute('attr-target');
+//        console.log(target.getAttribute('attr-target'));
+
+        if(attrTarget == null || attrTarget == 'undefined'){
+            return true;
+        }
+
+        var direction = getDirection(startx, starty, endx, endy);
+        var LENG = parseInt(endx - startx); // 手指横向滑动的步长
+        var H_LENG = parseInt(endy-starty); // 手指纵向滑动的步长
+
+        var isChangePage = false; // 通过步长判断是否切换页面
+        Math.abs(LENG) > 100? (isChangePage = true) : (isChangePage = false);
+        if( Math.abs(LENG) > 60 || Math.abs(H_LENG) > 60 ){
+            isChangePage = true;
+        }
+
+
+        var startMove = function(direction){
+            if(isChangePage){
+//                console.log('滑动方向 ： ' + direction);
+                console.log('方向direction ： '+direction);
+            }else{
+                console.log('步长不够');
+            }
+        };
+
+
+
+        switch (direction) {
+            case 0:
+//                alert("未滑动！");
+                break;
+            case 1:
+                //alert("向上！");
+                startMove('top');
+                break;
+            case 2:
+                //alert("向下！");
+                startMove('down');
+                break;
+            case 3:
+//                alert("向左！");
+                startMove('left');
+                break;
+            case 4:
+//                alert("向右！");
+                startMove('right');
+                break;
+            default:
+        }
+    }, false);
+</script>
+</body>
+</html>
